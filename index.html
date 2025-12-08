@@ -13,9 +13,9 @@
         :root {
             --bg-fundo: #1a1a1d; 
             --bg-conteudo: #ffffff; 
-            --cor-destaque: #6f00ff; /* Roxo Neon */
-            --cor-secundaria: #ff0055; /* Rosa Neon */
-            --cor-subtitulo: #FFD700; /* Dourado */
+            --cor-destaque: #6f00ff; 
+            --cor-secundaria: #ff0055; 
+            --cor-subtitulo: #FFD700; 
             --cor-texto: #212121;
             
             --fonte-titulo: 'Bangers', system-ui; 
@@ -38,11 +38,11 @@
             overflow: hidden;
         }
 
-        /* --- CONTAINER PRINCIPAL --- */
+        /* CONTAINER LARGO (MANTIDO DO ÚLTIMO FORMATO) */
         .livro-container {
             position: relative;
             width: 95%;
-            max-width: 800px; /* Aumentei a largura máxima para caber as 3 colunas */
+            max-width: 800px; /* Largura maior para caber os projetos */
             height: 90vh;
             max-height: 850px;
             background-color: var(--bg-conteudo);
@@ -54,7 +54,6 @@
             border: 3px solid var(--cor-destaque);
         }
 
-        /* --- ÁREA DE ROLAGEM --- */
         .area-conteudo-paginas {
             flex-grow: 1;
             position: relative;
@@ -68,7 +67,6 @@
         .area-conteudo-paginas::-webkit-scrollbar-track { background: #f1f1f1; }
         .area-conteudo-paginas::-webkit-scrollbar-thumb { background-color: var(--cor-destaque); border-radius: 4px; }
 
-        /* --- PÁGINAS --- */
         .pagina-conteudo {
             padding: 20px 30px;
             position: absolute;
@@ -93,73 +91,17 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- NOVO LAYOUT DA HOME (PAG 1) --- */
+        /* --- ESTILOS DA HOME (PAG 1) - LIMPA --- */
         #pag1.ativa {
-            display: block; /* Reseta o flex anterior */
-            height: 100%;
-            padding: 20px;
-        }
-
-        /* Grid de 3 colunas */
-        .layout-triplo {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr 1fr; /* Esquerda | Centro Maior | Direita */
-            gap: 20px;
-            height: 100%;
-            align-items: center; /* Centraliza verticalmente */
-        }
-
-        /* Colunas Laterais (Imagens) */
-        .coluna-lateral {
             display: flex;
             flex-direction: column;
+            align-items: center;     
+            justify-content: center;
             gap: 15px;
-            justify-content: center;
+            padding-top: 20px;
+            padding-bottom: 20px;
         }
 
-        /* Coluna Central (Texto e Menu) */
-        .coluna-central {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            height: 100%;
-        }
-
-        /* Novos Quadros com Legenda */
-        .quadro-com-legenda {
-            border: 2px dashed #ccc;
-            border-radius: 8px;
-            padding: 8px;
-            background: #fff;
-            text-align: center;
-            box-shadow: 3px 3px 5px rgba(0,0,0,0.1);
-            transition: transform 0.2s;
-        }
-        .quadro-com-legenda:hover {
-            transform: scale(1.05);
-            border-color: var(--cor-destaque);
-        }
-
-        .quadro-img {
-            width: 100%;
-            height: 90px; /* Altura fixa para os quadros laterais */
-            object-fit: cover;
-            border-radius: 4px;
-            display: block;
-        }
-
-        .legenda {
-            margin: 8px 0 0 0;
-            font-size: 0.85rem;
-            font-weight: bold;
-            color: var(--cor-destaque);
-            text-transform: uppercase;
-            font-family: var(--fonte-corpo);
-        }
-
-        /* --- TIPOGRAFIA DA HOME --- */
         h1 {
             font-family: var(--fonte-titulo);
             color: var(--cor-destaque);
@@ -179,7 +121,6 @@
             transition: color 0.3s, text-shadow 0.3s; 
         }
 
-        h1:hover { color: var(--cor-secundaria); }
         h1:hover .nome-destaque {
             color: #fff;
             text-shadow: 0 0 10px var(--cor-secundaria), 2px 2px 0 #000;
@@ -193,10 +134,36 @@
             font-size: 0.9rem;
             text-align: center;
             margin-top: 5px;
-            margin-bottom: 20px;
         }
 
-        /* --- MENU --- */
+        /* Banner Home */
+        .banner-container {
+            width: 100%;
+            height: auto;
+            max-height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px 0;
+            padding: 5px;
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            overflow: hidden; 
+            cursor: pointer;
+        }
+
+        .banner-img {
+            height: 100%;
+            width: auto;
+            max-width: 100%;
+            object-fit: contain;
+            border-radius: 4px;
+            transition: transform 0.4s;
+        }
+
+        .banner-container:hover .banner-img { transform: scale(1.15); }
+
+        /* Menu */
         .menu-lista {
             display: flex;
             flex-direction: column;
@@ -232,7 +199,7 @@
             box-shadow: 4px 4px 0 #000;
         }
 
-        /* --- ESTILOS INTERNOS (PAG 2, 3, 4, 5) --- */
+        /* --- ESTILOS PAG 2 (PERFIL) --- */
         h2 { 
             font-family: var(--fonte-titulo); 
             color: #333; 
@@ -241,15 +208,8 @@
             margin-top: 0;
         }
         
-        .texto-bio {
-            color: #333; 
-            line-height: 1.6; 
-            font-size: 1rem; 
-            text-align: justify;
-            margin-bottom: 15px;
-        }
+        .texto-bio { color: #333; line-height: 1.6; font-size: 1rem; text-align: justify; margin-bottom: 15px; }
 
-        /* CAIXA DA FOTO DE PERFIL (Página 2) */
         .foto-perfil-container {
             width: 180px;      
             height: auto;
@@ -262,45 +222,57 @@
             box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
         }
         
-        .foto-perfil-img {
-            width: 100%;
-            height: auto;
-            display: block;
+        .foto-perfil-img { width: 100%; height: auto; display: block; }
+        .conteudo-com-foto::after { content: ""; display: table; clear: both; }
+
+        /* --- ESTILOS PAG 3 (PROJETOS - 6 QUADROS) --- */
+        .layout-projetos {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr 1fr; /* 3 Colunas */
+            gap: 15px;
+            align-items: start;
+            margin-top: 20px;
         }
 
-        .conteudo-com-foto::after {
-            content: "";
-            display: table;
-            clear: both;
+        .coluna-quadros {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .quadro-pequeno {
+            border: 2px dashed #ccc;
+            border-radius: 6px;
+            padding: 5px;
+            background: #fff;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .quadro-pequeno:hover { transform: scale(1.05); border-color: var(--cor-destaque); }
+
+        .img-quadro { width: 100%; height: 80px; object-fit: cover; border-radius: 4px; display: block; }
+        
+        .legenda-quadro {
+            margin: 5px 0 0 0;
+            font-size: 0.8rem;
+            color: var(--cor-destaque);
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .coluna-texto-projetos {
+            padding: 0 10px;
+            text-align: center;
+            font-size: 0.95rem;
+            color: #555;
         }
 
         .btn-voltar { margin-top: 20px; background: #333; color: #fff; border: none; padding: 10px 20px; border-radius: 4px; font-weight: bold; cursor: pointer; display: block; clear: both; }
-        .carousel-wrapper { margin-top: 20px; border: 2px solid #333; border-radius: 8px; overflow: hidden; position: relative; }
-        .carousel-slides { display: flex; transition: transform 0.4s ease; }
-        .slide img { width: 100%; display: block; }
-        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: #fff; border: none; padding: 10px; cursor: pointer; }
-        .prev { left: 0; } .next { right: 0; }
 
-        /* --- RESPONSIVIDADE (CELULAR) --- */
-        @media (max-width: 768px) {
-            .layout-triplo {
-                grid-template-columns: 1fr; /* Empilha tudo */
-                gap: 20px;
-                height: auto;
-            }
-            /* Ordem no celular: Título primeiro */
-            .coluna-central { order: -1; margin-bottom: 20px; }
-            
-            /* Colunas laterais viram linhas horizontais no celular */
-            .coluna-lateral {
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .quadro-com-legenda {
-                width: 30%; /* 3 por linha no celular */
-                min-width: 80px;
-            }
+        /* Responsividade para os Quadros */
+        @media (max-width: 700px) {
+            .layout-projetos { grid-template-columns: 1fr 1fr; } /* Vira 2 colunas no cel */
+            .coluna-texto-projetos { grid-column: span 2; order: -1; margin-bottom: 15px; }
         }
     </style>
 </head>
@@ -310,59 +282,27 @@
         <div class="area-conteudo-paginas">
 
             <div id="pag1" class="pagina-conteudo ativa">
-                
-                <div class="layout-triplo">
-                    
-                    <div class="coluna-lateral">
-                        <div class="quadro-com-legenda">
-                            <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg" class="quadro-img" alt="Img 1">
-                            <p class="legenda">vamos tentar?</p>
-                        </div>
-                        <div class="quadro-com-legenda">
-                            <img src="https://placehold.co/150x150/6f00ff/fff" class="quadro-img" alt="Img 2">
-                            <p class="legenda">vamos tentar?</p>
-                        </div>
-                        <div class="quadro-com-legenda">
-                            <img src="https://placehold.co/150x150/ff0055/fff" class="quadro-img" alt="Img 3">
-                            <p class="legenda">vamos tentar?</p>
-                        </div>
-                    </div>
+                <div style="width: 100%; text-align: center;">
+                    <h1>
+                        Portfólio <br> 
+                        <span class="nome-destaque">Aleandro F.</span>
+                    </h1>
+                    <div class="subtitulo-escola">PROATI - Prof. Paulo Americo Paganucci - 2025</div>
+                </div>
 
-                    <div class="coluna-central">
-                        <div>
-                            <h1>
-                                Portfólio <br> 
-                                <span class="nome-destaque">Aleandro F.</span>
-                            </h1>
-                            <div class="subtitulo-escola">PROATI - Prof. Paulo Americo Paganucci - 2025</div>
-                        </div>
+                <div class="banner-container">
+                    <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg" 
+                         alt="Aleandro F." 
+                         class="banner-img">
+                </div>
 
-                        <p style="color: #666; font-style: italic;">(Espaço central livre para texto)</p>
-
-                        <ul class="menu-lista">
-                            <li><button onclick="mudarPagina('pag2')">01. QUEM SOU EU</button></li>
-                            <li><button onclick="mudarPagina('pag3')">02. MEUS PROJETOS</button></li>
-                            <li><button onclick="mudarPagina('pag4')">03. TEXTOS</button></li>
-                            <li><button onclick="mudarPagina('pag5')">04. CONTATO</button></li>
-                        </ul>
-                    </div>
-
-                    <div class="coluna-lateral">
-                        <div class="quadro-com-legenda">
-                            <img src="https://placehold.co/150x150/ff0055/fff" class="quadro-img" alt="Img 4">
-                            <p class="legenda">vamos tentar?</p>
-                        </div>
-                        <div class="quadro-com-legenda">
-                            <img src="https://placehold.co/150x150/6f00ff/fff" class="quadro-img" alt="Img 5">
-                            <p class="legenda">vamos tentar?</p>
-                        </div>
-                        <div class="quadro-com-legenda">
-                            <img src="https://placehold.co/150x150/111/fff" class="quadro-img" alt="Img 6">
-                            <p class="legenda">vamos tentar?</p>
-                        </div>
-                    </div>
-
-                </div> </div>
+                <ul class="menu-lista">
+                    <li><button onclick="mudarPagina('pag2')">01. QUEM SOU EU</button></li>
+                    <li><button onclick="mudarPagina('pag3')">02. MEUS PROJETOS</button></li>
+                    <li><button onclick="mudarPagina('pag4')">03. TEXTOS</button></li>
+                    <li><button onclick="mudarPagina('pag5')">04. CONTATO</button></li>
+                </ul>
+            </div>
 
             <div id="pag2" class="pagina-conteudo">
                 <h2>01 // Sobre Aleandro</h2>
@@ -383,15 +323,47 @@
             </div>
 
             <div id="pag3" class="pagina-conteudo">
-                <h2>02 // Galeria</h2>
-                <div class="carousel-wrapper">
-                    <div class="carousel-slides" id="carouselSlides">
-                        <div class="slide"><img src="https://placehold.co/600x300/111/FFF?text=Projeto+01" alt="P1"></div>
-                        <div class="slide"><img src="https://placehold.co/600x300/6f00ff/FFF?text=Projeto+02" alt="P2"></div>
-                        <div class="slide"><img src="https://placehold.co/600x300/ff0055/FFF?text=Projeto+03" alt="P3"></div>
+                <h2>02 // Galeria de Projetos</h2>
+                <p style="color:#666; font-style: italic; text-align:center;">Projetos e Atividades em Destaque</p>
+
+                <div class="layout-projetos">
+                    
+                    <div class="coluna-quadros">
+                        <div class="quadro-pequeno">
+                            <img src="https://placehold.co/150x100/6f00ff/fff" class="img-quadro">
+                            <p class="legenda-quadro">vamos tentar?</p>
+                        </div>
+                        <div class="quadro-pequeno">
+                            <img src="https://placehold.co/150x100/ff0055/fff" class="img-quadro">
+                            <p class="legenda-quadro">vamos tentar?</p>
+                        </div>
+                        <div class="quadro-pequeno">
+                            <img src="https://placehold.co/150x100/333/fff" class="img-quadro">
+                            <p class="legenda-quadro">vamos tentar?</p>
+                        </div>
                     </div>
-                    <button class="nav-btn prev" onclick="mudarSlide(-1)">&#10094;</button>
-                    <button class="nav-btn next" onclick="mudarSlide(1)">&#10095;</button>
+
+                    <div class="coluna-texto-projetos">
+                        <p><strong>Descrição:</strong></p>
+                        <p>Este espaço central está reservado para descrever os projetos ao lado.</p>
+                        <p>Clique nas imagens para expandir ou adicione detalhes aqui.</p>
+                    </div>
+
+                    <div class="coluna-quadros">
+                        <div class="quadro-pequeno">
+                            <img src="https://placehold.co/150x100/333/fff" class="img-quadro">
+                            <p class="legenda-quadro">vamos tentar?</p>
+                        </div>
+                        <div class="quadro-pequeno">
+                            <img src="https://placehold.co/150x100/ff0055/fff" class="img-quadro">
+                            <p class="legenda-quadro">vamos tentar?</p>
+                        </div>
+                        <div class="quadro-pequeno">
+                            <img src="https://placehold.co/150x100/6f00ff/fff" class="img-quadro">
+                            <p class="legenda-quadro">vamos tentar?</p>
+                        </div>
+                    </div>
+
                 </div>
                 <button class="btn-voltar" onclick="mudarPagina('pag1')">Voltar</button>
             </div>
@@ -421,16 +393,6 @@
             document.querySelectorAll('.pagina-conteudo').forEach(p => p.classList.remove('ativa'));
             document.getElementById(id).classList.add('ativa');
             document.querySelector('.area-conteudo-paginas').scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        let slideIndex = 0;
-        function mudarSlide(d) {
-            const slides = document.querySelectorAll('.slide');
-            const c = document.getElementById('carouselSlides');
-            slideIndex += d;
-            if (slideIndex >= slides.length) slideIndex = 0;
-            if (slideIndex < 0) slideIndex = slides.length - 1;
-            c.style.transform = `translateX(-${slideIndex * 100}%)`;
         }
     </script>
 </body>
