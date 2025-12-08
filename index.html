@@ -45,19 +45,17 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9); /* Fundo escuro */
-            backdrop-filter: blur(5px); /* Desfoque no fundo */
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(5px);
             z-index: 9999;
-            display: none; /* Escondido por padrão */
+            display: none;
             justify-content: center;
             align-items: center;
             cursor: pointer;
             animation: fadeIn 0.3s ease;
         }
         
-        .lightbox-overlay.active {
-            display: flex;
-        }
+        .lightbox-overlay.active { display: flex; }
 
         .lightbox-img {
             max-width: 90%;
@@ -122,7 +120,6 @@
             gap: 15px; padding-top: 20px; padding-bottom: 20px;
         }
 
-        /* TÍTULOS COM EFEITO AO PASSAR O MOUSE */
         h1 {
             font-family: var(--fonte-titulo);
             color: var(--cor-destaque);
@@ -133,10 +130,8 @@
             text-shadow: 2px 2px 0px #000;
             line-height: 1;
             cursor: default;
-            transition: all 0.3s ease; /* Suavidade */
+            transition: all 0.3s ease;
         }
-        
-        /* Efeito de balanço no título principal */
         h1:hover { transform: scale(1.05); }
 
         .nome-destaque {
@@ -163,7 +158,7 @@
             display: flex; justify-content: center; align-items: center;
             margin: 10px 0; padding: 5px;
             border: 2px dashed #ccc; border-radius: 8px; overflow: hidden; 
-            cursor: pointer;
+            cursor: zoom-in; /* Ícone de lupa */
         }
         .banner-img {
             height: 100%; width: auto; max-width: 100%;
@@ -188,25 +183,20 @@
         }
 
         /* --- ESTILOS INTERNOS --- */
-        
-        /* TÍTULOS INTERNOS COM AÇÃO */
         h2 { 
             font-family: var(--fonte-titulo); 
             color: #333; 
             border-left: 5px solid var(--cor-secundaria); 
             padding-left: 10px;
             margin-top: 0;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s;
             cursor: default;
-            display: inline-block; /* Para o efeito funcionar melhor */
             width: 100%;
         }
-
-        /* Ação ao passar o mouse no título H2 */
         h2:hover {
-            color: var(--cor-destaque); /* Muda para roxo */
-            border-left-width: 15px; /* Engrossa a borda rosa */
-            padding-left: 20px; /* Move para a direita */
+            color: var(--cor-destaque); 
+            border-left-width: 15px; 
+            padding-left: 20px; 
             text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
         }
 
@@ -217,25 +207,23 @@
             border: 3px solid var(--cor-destaque); border-radius: 8px; overflow: hidden;
             box-shadow: 3px 3px 0 rgba(0,0,0,0.1); transition: transform 0.3s;
         }
-        .foto-perfil-container:hover { transform: rotate(2deg) scale(1.05); } /* Brincadeira na foto perfil */
+        .foto-perfil-container:hover { transform: rotate(2deg) scale(1.05); } 
         
         .foto-perfil-img { width: 100%; height: auto; display: block; }
         .conteudo-com-foto::after { content: ""; display: table; clear: both; }
 
-        /* --- GALERIA DE PROJETOS (PAG 3) --- */
+        /* --- GALERIA SALA MAKER (PAG 3) --- */
         .layout-projetos {
             display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 15px;
             align-items: start; margin-top: 20px;
         }
         .coluna-quadros { display: flex; flex-direction: column; gap: 15px; }
 
-        /* Quadros que clicam */
         .quadro-pequeno {
             border: 2px dashed #ccc; border-radius: 6px; padding: 5px;
             background: #fff; text-align: center; transition: all 0.2s;
-            cursor: zoom-in; /* Ícone de lupa */
+            cursor: zoom-in;
         }
-        /* Efeito no quadro ao passar o mouse */
         .quadro-pequeno:hover { 
             transform: scale(1.05) translateY(-5px); 
             border-color: var(--cor-destaque);
@@ -278,14 +266,14 @@
                     <div class="subtitulo-escola">PROATI - Prof. Paulo Americo Paganucci - 2025</div>
                 </div>
 
-                <div class="banner-container">
+                <div class="banner-container" onclick="abrirImagem('https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg')">
                     <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg" 
                          alt="Aleandro F." class="banner-img">
                 </div>
 
                 <ul class="menu-lista">
                     <li><button onclick="mudarPagina('pag2')">01. QUEM SOU EU</button></li>
-                    <li><button onclick="mudarPagina('pag3')">02. MEUS PROJETOS</button></li>
+                    <li><button onclick="mudarPagina('pag3')">02. SALA MAKER</button></li>
                     <li><button onclick="mudarPagina('pag4')">03. TEXTOS</button></li>
                     <li><button onclick="mudarPagina('pag5')">04. CONTATO</button></li>
                 </ul>
@@ -299,18 +287,23 @@
                              alt="Foto de Perfil" class="foto-perfil-img"
                              onclick="abrirImagem(this.src)" style="cursor: zoom-in;">
                     </div>
+                    
                     <p class="texto-bio">
-                        Sou professor da Secretaria da Educação do Estado de São Paulo desde 2013, construindo ao longo desses anos uma trajetória pautada pelo compromisso com a formação humana, pelo diálogo e pela prática pedagógica responsável. Minha atuação abrange as áreas de História, Filosofia e Sociologia, sempre com foco na construção crítica do conhecimento e no fortalecimento da autonomia intelectual dos estudantes.
+                        A Sala Maker é um espaço fundamental para estimular criatividade, inovação e aprendizagem prática na escola. Ali, os estudantes experimentam, testam ideias e desenvolvem projetos que conectam o conteúdo às demandas do mundo real.
                     </p>
                     <p class="texto-bio">
-                        Em 2024, consolidei uma etapa importante da minha carreira ao assumir o cargo na escola Paulo Américo Paganucci, conquistado por concurso público, reafirmando meu compromisso com a educação pública e com o desenvolvimento contínuo da minha prática docente. Esse período representa não apenas a continuidade do meu trabalho, mas também a maturidade profissional adquirida ao longo de mais de uma década de dedicação à rede estadual.
+                        O PROATI fortalece esse trabalho ao integrar a tecnologia ao cotidiano escolar, oferecendo suporte aos professores e orientando o uso dos recursos digitais. Atua como ponte entre a prática pedagógica e as ferramentas tecnológicas, garantindo que a Sala Maker funcione de forma dinâmica, inclusiva e realmente transformadora.
+                    </p>
+                    
+                    <p class="texto-bio" style="font-weight: bold; color: var(--cor-destaque);">
+                        Aleandro Ferreira
                     </p>
                 </div>
                 <button class="btn-voltar" onclick="mudarPagina('pag1')">Voltar</button>
             </div>
 
             <div id="pag3" class="pagina-conteudo">
-                <h2>02 // Galeria de Projetos</h2>
+                <h2>02 // Sala Maker</h2>
                 <p style="color:#666; font-style: italic; text-align:center;">Projetos e Atividades em Destaque</p>
 
                 <div class="layout-projetos">
@@ -375,23 +368,19 @@
     </div>
 
     <script>
-        // Navegação entre páginas
         function mudarPagina(id) {
             document.querySelectorAll('.pagina-conteudo').forEach(p => p.classList.remove('ativa'));
             document.getElementById(id).classList.add('ativa');
             document.querySelector('.area-conteudo-paginas').scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Função para abrir a imagem em tela cheia (Lightbox)
         function abrirImagem(linkImagem) {
             const lightbox = document.getElementById('lightbox');
             const img = document.getElementById('lightbox-img');
-            
-            img.src = linkImagem; // Coloca a foto clicada no lightbox
-            lightbox.classList.add('active'); // Mostra o lightbox
+            img.src = linkImagem;
+            lightbox.classList.add('active');
         }
 
-        // Função para fechar ao clicar
         function fecharImagem() {
             document.getElementById('lightbox').classList.remove('active');
         }
