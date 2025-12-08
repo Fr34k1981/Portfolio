@@ -13,9 +13,9 @@
         :root {
             --bg-fundo: #1a1a1d; 
             --bg-conteudo: #ffffff; 
-            --cor-destaque: #6f00ff; /* Roxo Neon */
-            --cor-secundaria: #ff0055; /* Rosa Neon */
-            --cor-subtitulo: #FFD700; /* Dourado */
+            --cor-destaque: #6f00ff; 
+            --cor-secundaria: #ff0055; 
+            --cor-subtitulo: #FFD700; 
             --cor-texto: #212121;
             
             --fonte-titulo: 'Bangers', system-ui; 
@@ -38,7 +38,6 @@
             overflow: hidden;
         }
 
-        /* --- CONTAINER PRINCIPAL --- */
         .livro-container {
             position: relative;
             width: 95%;
@@ -54,7 +53,6 @@
             border: 3px solid var(--cor-destaque);
         }
 
-        /* --- ÁREA DE ROLAGEM --- */
         .area-conteudo-paginas {
             flex-grow: 1;
             position: relative;
@@ -64,11 +62,11 @@
             scrollbar-color: var(--cor-destaque) #f0f0f0;
         }
 
+        /* Scrollbar */
         .area-conteudo-paginas::-webkit-scrollbar { width: 8px; }
         .area-conteudo-paginas::-webkit-scrollbar-track { background: #f1f1f1; }
         .area-conteudo-paginas::-webkit-scrollbar-thumb { background-color: var(--cor-destaque); border-radius: 4px; }
 
-        /* --- PÁGINAS --- */
         .pagina-conteudo {
             padding: 20px 30px;
             position: absolute;
@@ -88,7 +86,6 @@
             animation: fadeIn 0.5s forwards;
         }
 
-        /* Layout da HOME */
         #pag1.ativa {
             display: flex;
             flex-direction: column;
@@ -104,7 +101,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- TIPOGRAFIA DA HOME --- */
+        /* --- TIPOGRAFIA --- */
         h1 {
             font-family: var(--fonte-titulo);
             color: var(--cor-destaque);
@@ -130,10 +127,9 @@
             text-shadow: 0 0 10px var(--cor-secundaria), 2px 2px 0 #000;
         }
 
-        /* Subtítulo Dourado Simples */
         .subtitulo-escola {
             font-family: var(--fonte-corpo);
-            color: var(--cor-subtitulo); /* Dourado */
+            color: var(--cor-subtitulo);
             font-weight: bold;
             text-transform: uppercase;
             font-size: 0.9rem;
@@ -141,11 +137,11 @@
             margin-top: 5px;
         }
 
-        /* --- FOTO HOME (VERTICAL) --- */
+        /* --- FOTO HOME --- */
         .banner-container {
             width: 100%;
             height: auto;
-            max-height: 250px; /* Altura segura */
+            max-height: 250px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -206,4 +202,158 @@
             box-shadow: 4px 4px 0 #000;
         }
 
-        /* --- ESTILOS INTERNOS (PAG 2, 3, 4, 5) ---
+        /* --- PÁGINA 2: FOTO + TEXTO --- */
+        h2 { 
+            font-family: var(--fonte-titulo); 
+            color: #333; 
+            border-left: 5px solid var(--cor-secundaria); 
+            padding-left: 10px;
+            margin-top: 0;
+        }
+        
+        .texto-bio {
+            color: #333; 
+            line-height: 1.6; 
+            font-size: 1rem; 
+            text-align: justify;
+            margin-bottom: 15px;
+        }
+
+        /* CAIXA DA FOTO DE PERFIL */
+        .foto-perfil-container {
+            width: 150px;      /* Tamanho ideal para texto fluir */
+            height: auto;
+            float: right;      /* Joga a foto para direita */
+            margin-left: 15px; /* Afasta o texto da foto */
+            margin-bottom: 10px;
+            border: 3px solid var(--cor-destaque);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+        }
+        
+        .foto-perfil-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Limpa o float para o botão não subir */
+        .conteudo-com-foto::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .btn-voltar { margin-top: 20px; background: #333; color: #fff; border: none; padding: 10px 20px; border-radius: 4px; font-weight: bold; cursor: pointer; display: block; clear: both; }
+        .carousel-wrapper { margin-top: 20px; border: 2px solid #333; border-radius: 8px; overflow: hidden; position: relative; }
+        .carousel-slides { display: flex; transition: transform 0.4s ease; }
+        .slide img { width: 100%; display: block; }
+        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: #fff; border: none; padding: 10px; cursor: pointer; }
+        .prev { left: 0; } .next { right: 0; }
+    </style>
+</head>
+<body>
+
+    <div class="livro-container">
+        <div class="area-conteudo-paginas">
+
+            <div id="pag1" class="pagina-conteudo ativa">
+                <div style="width: 100%; text-align: center;">
+                    <h1>
+                        Portfólio <br> 
+                        <span class="nome-destaque">Aleandro F.</span>
+                    </h1>
+                    <div class="subtitulo-escola">PROATI - Prof. Paulo Americo Paganucci - 2025</div>
+                </div>
+
+                <div class="banner-container">
+                    <img src="IMG_20241125_124530.jpg" 
+                         alt="Aleandro F." 
+                         class="banner-img">
+                </div>
+
+                <ul class="menu-lista">
+                    <li><button onclick="mudarPagina('pag2')">01. QUEM SOU EU</button></li>
+                    <li><button onclick="mudarPagina('pag3')">02. MEUS PROJETOS</button></li>
+                    <li><button onclick="mudarPagina('pag4')">03. TEXTOS</button></li>
+                    <li><button onclick="mudarPagina('pag5')">04. CONTATO</button></li>
+                </ul>
+            </div>
+
+            <div id="pag2" class="pagina-conteudo">
+                <h2>01 // Sobre Aleandro</h2>
+                
+                <div class="conteudo-com-foto">
+                    
+                    <div class="foto-perfil-container">
+                        <img src="IMG-20251013-WA0004.jpg" 
+                             alt="Foto de Perfil" 
+                             class="foto-perfil-img">
+                    </div>
+
+                    <p class="texto-bio">
+                        Sou professor da Secretaria da Educação do Estado de São Paulo desde 2013, construindo ao longo desses anos uma trajetória pautada pelo compromisso com a formação humana, pelo diálogo e pela prática pedagógica responsável. Minha atuação abrange as áreas de História, Filosofia e Sociologia, sempre com foco na construção crítica do conhecimento e no fortalecimento da autonomia intelectual dos estudantes.
+                    </p>
+                    
+                    <p class="texto-bio">
+                        Em 2024, consolidei uma etapa importante da minha carreira ao assumir o cargo na escola Paulo Américo Paganucci, conquistado por concurso público, reafirmando meu compromisso com a educação pública e com o desenvolvimento contínuo da minha prática docente. Esse período representa não apenas a continuidade do meu trabalho, mas também a maturidade profissional adquirida ao longo de mais de uma década de dedicação à rede estadual.
+                    </p>
+                </div>
+
+                <button class="btn-voltar" onclick="mudarPagina('pag1')">Voltar</button>
+            </div>
+
+            <div id="pag3" class="pagina-conteudo">
+                <h2>02 // Galeria</h2>
+                <div class="carousel-wrapper">
+                    <div class="carousel-slides" id="carouselSlides">
+                        <div class="slide"><img src="https://placehold.co/600x300/111/FFF?text=Projeto+01" alt="P1"></div>
+                        <div class="slide"><img src="https://placehold.co/600x300/6f00ff/FFF?text=Projeto+02" alt="P2"></div>
+                        <div class="slide"><img src="https://placehold.co/600x300/ff0055/FFF?text=Projeto+03" alt="P3"></div>
+                    </div>
+                    <button class="nav-btn prev" onclick="mudarSlide(-1)">&#10094;</button>
+                    <button class="nav-btn next" onclick="mudarSlide(1)">&#10095;</button>
+                </div>
+                <button class="btn-voltar" onclick="mudarPagina('pag1')">Voltar</button>
+            </div>
+
+            <div id="pag4" class="pagina-conteudo">
+                <h2>03 // Arquivos</h2>
+                <div style="background: #f9f9f9; padding: 15px; border-left: 4px solid var(--cor-destaque); margin-bottom: 10px;">
+                    <h3 style="margin:0; font-size: 1.1rem; font-family:var(--fonte-corpo); font-weight:bold; color:#333;">Minhas Crônicas</h3>
+                    <p style="margin:5px 0 0 0; font-size: 0.9rem;">Pensamentos e narrativas.</p>
+                </div>
+                <button class="btn-voltar" onclick="mudarPagina('pag1')">Voltar</button>
+            </div>
+
+            <div id="pag5" class="pagina-conteudo">
+                <h2>04 // Fale Comigo</h2>
+                <div style="background: #111; color: #fff; padding: 20px; border-radius: 8px; text-align: center;">
+                    <p>📧 aleandro@exemplo.com</p>
+                </div>
+                <button class="btn-voltar" onclick="mudarPagina('pag1')">Voltar</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function mudarPagina(id) {
+            document.querySelectorAll('.pagina-conteudo').forEach(p => p.classList.remove('ativa'));
+            document.getElementById(id).classList.add('ativa');
+            document.querySelector('.area-conteudo-paginas').scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        let slideIndex = 0;
+        function mudarSlide(d) {
+            const slides = document.querySelectorAll('.slide');
+            const c = document.getElementById('carouselSlides');
+            slideIndex += d;
+            if (slideIndex >= slides.length) slideIndex = 0;
+            if (slideIndex < 0) slideIndex = slides.length - 1;
+            c.style.transform = `translateX(-${slideIndex * 100}%)`;
+        }
+    </script>
+</body>
+</html>
