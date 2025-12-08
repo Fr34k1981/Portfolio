@@ -38,11 +38,11 @@
             overflow: hidden;
         }
 
-        /* CONTAINER LARGO (MANTIDO DO ÚLTIMO FORMATO) */
+        /* CONTAINER LARGO */
         .livro-container {
             position: relative;
             width: 95%;
-            max-width: 800px; /* Largura maior para caber os projetos */
+            max-width: 800px;
             height: 90vh;
             max-height: 850px;
             background-color: var(--bg-conteudo);
@@ -91,7 +91,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- ESTILOS DA HOME (PAG 1) - LIMPA --- */
+        /* --- ESTILOS DA HOME (PAG 1) --- */
         #pag1.ativa {
             display: flex;
             flex-direction: column;
@@ -225,7 +225,7 @@
         .foto-perfil-img { width: 100%; height: auto; display: block; }
         .conteudo-com-foto::after { content: ""; display: table; clear: both; }
 
-        /* --- ESTILOS PAG 3 (PROJETOS - 6 QUADROS) --- */
+        /* --- ESTILOS PAG 3 (PROJETOS) --- */
         .layout-projetos {
             display: grid;
             grid-template-columns: 1fr 1.5fr 1fr; /* 3 Colunas */
@@ -271,7 +271,7 @@
 
         /* Responsividade para os Quadros */
         @media (max-width: 700px) {
-            .layout-projetos { grid-template-columns: 1fr 1fr; } /* Vira 2 colunas no cel */
+            .layout-projetos { grid-template-columns: 1fr 1fr; } 
             .coluna-texto-projetos { grid-column: span 2; order: -1; margin-bottom: 15px; }
         }
     </style>
@@ -330,15 +330,15 @@
                     
                     <div class="coluna-quadros">
                         <div class="quadro-pequeno">
-                            <img src="https://github.com/Fr34k1981/Portfolio/blob/2896fac196db608e769ec766e6e2a9836a11dc99/img1.jpg" class="img-quadro">
+                            <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/2896fac196db608e769ec766e6e2a9836a11dc99/img1.jpg" class="img-quadro">
                             <p class="legenda-quadro">vamos tentar?</p>
                         </div>
                         <div class="quadro-pequeno">
-                            <img src="https://github.com/Fr34k1981/Portfolio/blob/b79cb2a10266765edf791e299108950e654d6fe2/img2.jpg" class="img-quadro">
+                            <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/b79cb2a10266765edf791e299108950e654d6fe2/img2.jpg" class="img-quadro">
                             <p class="legenda-quadro">vamos tentar?</p>
                         </div>
                         <div class="quadro-pequeno">
-                            <img src="https://github.com/Fr34k1981/Portfolio/blob/b79cb2a10266765edf791e299108950e654d6fe2/img3.jpg" class="img-quadro">
+                            <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/b79cb2a10266765edf791e299108950e654d6fe2/img3.jpg" class="img-quadro">
                             <p class="legenda-quadro">vamos tentar?</p>
                         </div>
                     </div>
@@ -351,15 +351,15 @@
 
                     <div class="coluna-quadros">
                         <div class="quadro-pequeno">
-                            <img src=https://github.com/Fr34k1981/Portfolio/blob/b79cb2a10266765edf791e299108950e654d6fe2/img4.jpg">
+                            <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/b79cb2a10266765edf791e299108950e654d6fe2/img4.jpg" class="img-quadro">
                             <p class="legenda-quadro">vamos tentar?</p>
                         </div>
                         <div class="quadro-pequeno">
-                            <img src="https://github.com/Fr34k1981/Portfolio/blob/b79cb2a10266765edf791e299108950e654d6fe2/img5.jpg">
+                            <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/b79cb2a10266765edf791e299108950e654d6fe2/img5.jpg" class="img-quadro">
                             <p class="legenda-quadro">vamos tentar?</p>
                         </div>
                         <div class="quadro-pequeno">
-                            <img src="https://github.com/Fr34k1981/Portfolio/blob/b79cb2a10266765edf791e299108950e654d6fe2/img6.jpg" class="img-quadro">
+                            <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/b79cb2a10266765edf791e299108950e654d6fe2/img6.jpg" class="img-quadro">
                             <p class="legenda-quadro">vamos tentar?</p>
                         </div>
                     </div>
@@ -397,5 +397,3 @@
     </script>
 </body>
 </html>
-
-
