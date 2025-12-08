@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio - Aleandro F.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- ESTILOS GERAIS --- */
+        :root {
+            --bg-fundo: #1a1a1d; 
+            --bg-conteudo: #ffffff; 
+            --cor-destaque: #6f00ff; /* Roxo Neon */
+            --cor-secundaria: #ff0055; 
+            --cor-texto: #212121;
+            
+            --fonte-titulo: 'Bangers', system-ui; 
+            --fonte-corpo: 'Roboto', sans-serif; 
+        }
+
+        body {
+            background-color: var(--bg-fundo);
+            background-image: 
+                radial-gradient(#333 1px, transparent 1px),
+                radial-gradient(#333 1px, transparent 1px);
+            background-position: 0 0, 25px 25px;
+            background-size: 50px 50px;
+            font-family: var(--fonte-corpo);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        /* --- CONTAINER PRINCIPAL --- */
+        .livro-container {
+            position: relative;
+            width: 95%;
+            max-width: 500px;
+            height: 85vh;
+            max-height: 800px;
+            background-color: var(--bg-conteudo);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(111, 0, 255, 0.3); 
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 3px solid var(--cor-destaque);
+        }
+
+        /* --- ÁREA DE ROLAGEM --- */
+        .area-conteudo-paginas {
+            flex-grow: 1;
+            position: relative;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: var(--cor-destaque) #f0f0f0;
+        }
+
+        .area-conteudo-paginas::-webkit-scrollbar { width: 8px; }
+        .area-conteudo-paginas::-webkit-scrollbar-track { background: #f1f1f1; }
+        .area-conteudo-paginas::-webkit-scrollbar-thumb { background-color: var(--cor-destaque); border-radius: 4px; }
+
+        /* --- PÁGINAS --- */
+        .pagina-conteudo {
+            padding: 20px 30px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            min-height: 100%;
+            box-sizing: border-box;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .pagina-conteudo.ativa {
+            display: block;
+            opacity: 1;
+            animation: fadeIn 0.5s forwards;
+        }
+
+        #pag1.ativa {
+            display: flex;
+            flex-direction: column;
+            align-items: center;     
+            justify-content: center; 
+            gap: 15px;
+            min-height: 100%; 
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- TIPOGRAFIA --- */
+        h1 {
+            font-family: var(--fonte-titulo);
+            color: var(--cor-destaque);
+            font-size: 2.5rem;
+            margin: 0;
+            text-transform: uppercase;
+            text-align: center;
+            text-shadow: 2px 2px 0px #000;
+            line-height: 1.1;
+        }
+        
+        /* Efeito no texto "Aleandro F" */
+        .nome-destaque {
+            color: var(--cor-secundaria);
+            display: block; /* Garante que fique na linha de baixo se precisar */
+            font-size: 3rem; /* Um pouco maior que o "Portfólio" */
+        }
+
+        h2 {
+            font-family: var(--fonte-titulo);
+            color: var(--cor-destaque);
+            border-left: 5px solid var(--cor-secundaria);
+            padding-left: 10px;
+        }
+
+        p { color: #555; line-height: 1.5; font-size: 1rem; }
+        .subtitulo { color: #888; font-weight: bold; margin-bottom: 5px; font-size: 0.9rem; text-align: center; }
+
+        /* --- FOTO COM ZOOM --- */
+        .banner-container {
+            width: auto;
+            max-width: 100%;
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+            padding: 5px;
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            
+            /* IMPORTANTE: Impede que o zoom saia para fora da caixa */
+            overflow: hidden; 
+            cursor: pointer;
+        }
+
+        .banner-img {
+            height: 220px;
+            width: auto;
+            max-width: 100%;
+            object-fit: contain;
+            border-radius: 4px;
+            
+            /* A MÁGICA DO ZOOM: Transição suave */
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Quando passar o mouse na caixa, aumenta a imagem */
+        .banner-container:hover .banner-img {
+            transform: scale(1.15); /* Aumenta 15% */
+        }
+
+        /* --- MENU --- */
+        .menu-lista {
+            display: flex;
+            flex-direction: column; 
+            width: 100%;
+            max-width: 280px; 
+            gap: 10px;
+            padding: 0;
+            list-style: none;
+        }
+
+        .menu-lista button {
+            background: #fff;
+            border: 2px solid #333;
+            color: #333;
+            padding: 12px;
+            font-family: var(--fonte-titulo);
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: 0.2s;
+            text-align: center;
+            letter-spacing: 1px;
+            box-shadow: 4px 4px 0 #ddd;
+        }
+
+        .menu-lista button:hover {
+            background: var(--cor-destaque);
+            color: #fff;
+            border-color: var(--cor-destaque);
+            transform: translateY(-2px);
+            box-shadow: 4px 4px 0 #000;
+        }
+
+        .btn-voltar {
+            margin-top: 20px;
+            background: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* --- CARROSSEL --- */
+        .carousel-wrapper {
+            margin-top: 20px;
+            border: 2px solid #333;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+        .carousel-slides { display: flex; transition: transform 0.4s ease; }
+        .slide img { width: 100%; display: block; }
+        .nav-btn {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: rgba(0,0,0,0.5); color: #fff; border: none;
+            padding: 10px; cursor: pointer;
+        }
+        .prev { left: 0; } .next { right: 0; }
+
+        @media (max-height: 700px) {
+            .banner-img { height: 180px; }
+            h1 { font-size: 2rem; }
+            .livro-container { height: 95vh; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="livro-container">
+        <div class="area-conteudo-paginas">
+
+            <div id="pag1" class="pagina-conteudo ativa">
+                
+                <div>
+                    <h1>
+                        Portfólio <br> 
+                        <span class="nome-destaque">Aleandro F.</span>
+                    </h1>
+                    <p class="subtitulo">DESIGNER & CRIATIVO</p>
+                </div>
+
+                <div class="banner-container">
+                    <img src="https://raw.githubusercontent.com/Fr34k1981/Freakzone/9114e051c53bbc7c3b7da07f54d3446f3c5b7e9d/IMG_20241125_124530.jpg" 
+                         alt="Aleandro F." 
+                         class="banner-img">
+                </div>
+
+                <div class="menu-lista">
+                    <button onclick="mudarPagina('pag2')">01. QUEM SOU EU</button>
+                    <button onclick="mudarPagina('pag3')">02. MEUS PROJETOS</button>
+                    <button onclick="mudarPagina('pag4')">03. TEXTOS</button>
+                    <button onclick="mudarPagina('pag5')">04. CONTATO</button>
+                </div>
+            </div>
+
+            <div id="pag2" class="pagina-conteudo">
+                <h2>01 // Sobre Aleandro</h2>
+                <p>Olá! Este é o meu espaço criativo.</p>
+                <p>Aqui você vai encontrar uma mistura de técnica, arte visual e experimentações.</p>
+                <button class="btn-voltar" onclick="mudarPagina('pag1')">Voltar</button>
+            </div>
+
+            <div id="pag3" class="pagina-conteudo">
+                <h2>02 // Galeria</h2>
+                <p>Destaques recentes:</p>
+                
+                <div class="carousel-wrapper">
+                    <div class="carousel-slides" id="carouselSlides">
+                        <div class="slide"><img src="https://placehold.co/600x300/111/FFF?text=Projeto+01" alt="P1"></div>
+                        <div class="slide"><img src="https://placehold.co/600x300/6f00ff/FFF?text=Projeto+02" alt="P2"></div>
+                        <div class="slide"><img src="https://placehold.co/600x300/ff0055/FFF?text=Projeto+03" alt="P3"></div>
+                    </div>
+                    <button class="nav-btn prev" onclick="mudarSlide(-1)">&#10094;</button>
+                    <button class="nav-btn next" onclick="mudarSlide(1)">&#10095;</button>
+                </div>
+
+                <button class="btn-voltar" onclick="mudarPagina('pag1')">Voltar</button>
+            </div>
+
+            <div id="pag4" class="pagina-conteudo">
+                <h2>03 // Arquivos</h2>
+                <div style="background: #f9f9f9; padding: 15px; border-left: 4px solid var(--cor-destaque); margin-bottom: 10px;">
+                    <h3 style="margin:0; font-size: 1.1rem;">Minhas Crônicas</h3>
+                    <p style="margin:5px 0 0 0; font-size: 0.9rem;">Pensamentos e narrativas.</p>
+                </div>
+                <button class="btn-voltar" onclick="mudarPagina('pag1')">Voltar</button>
+            </div>
+
+            <div id="pag5" class="pagina-conteudo">
+                <h2>04 // Fale Comigo</h2>
+                <div style="background: #111; color: #fff; padding: 20px; border-radius: 8px; text-align: center;">
+                    <p>📧 aleandro@exemplo.com</p>
+                    <p>📱 (XX) XXXXX-XXXX</p>
+                </div>
+                <button class="btn-voltar" onclick="mudarPagina('pag1')">Voltar</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function mudarPagina(id) {
+            document.querySelectorAll('.pagina-conteudo').forEach(p => p.classList.remove('ativa'));
+            document.getElementById(id).classList.add('ativa');
+            document.querySelector('.area-conteudo-paginas').scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        let slideIndex = 0;
+        function mudarSlide(d) {
+            const slides = document.querySelectorAll('.slide');
+            const c = document.getElementById('carouselSlides');
+            slideIndex += d;
+            if (slideIndex >= slides.length) slideIndex = 0;
+            if (slideIndex < 0) slideIndex = slides.length - 1;
+            c.style.transform = `translateX(-${slideIndex * 100}%)`;
+        }
+    </script>
+</body>
+</html>
