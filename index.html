@@ -38,7 +38,7 @@
             overflow: hidden;
         }
 
-        /* LIGHTBOX (TELA CHEIA DA IMAGEM) */
+        /* LIGHTBOX */
         .lightbox-overlay {
             position: fixed;
             top: 0;
@@ -54,7 +54,6 @@
             cursor: pointer;
             animation: fadeIn 0.3s ease;
         }
-        
         .lightbox-overlay.active { display: flex; }
 
         .lightbox-img {
@@ -67,7 +66,6 @@
             transform: scale(0.9);
             animation: zoomIn 0.3s forwards;
         }
-
         @keyframes zoomIn { to { transform: scale(1); } }
 
         /* CONTAINER PRINCIPAL */
@@ -152,13 +150,12 @@
         }
         .subtitulo-escola:hover { letter-spacing: 1px; color: #d4b000; }
 
-        /* FOTO HOME */
         .banner-container {
             width: 100%; height: auto; max-height: 250px;
             display: flex; justify-content: center; align-items: center;
             margin: 10px 0; padding: 5px;
             border: 2px dashed #ccc; border-radius: 8px; overflow: hidden; 
-            cursor: zoom-in; /* Ícone de lupa */
+            cursor: zoom-in;
         }
         .banner-img {
             height: 100%; width: auto; max-width: 100%;
@@ -166,7 +163,6 @@
         }
         .banner-container:hover .banner-img { transform: scale(1.15); }
 
-        /* MENU */
         .menu-lista {
             display: flex; flex-direction: column; width: 100%; max-width: 280px; 
             gap: 12px; padding: 0; list-style: none; margin: 10px 0;
@@ -233,7 +229,7 @@
         .img-quadro { width: 100%; height: 80px; object-fit: cover; border-radius: 4px; display: block; }
         .legenda-quadro { margin: 5px 0 0 0; font-size: 0.8rem; color: var(--cor-destaque); font-weight: bold; text-transform: uppercase; }
 
-        .coluna-texto-projetos { padding: 0 10px; text-align: center; font-size: 0.95rem; color: #555; }
+        .coluna-texto-projetos { padding: 0 10px; font-size: 0.95rem; color: #555; }
 
         .btn-voltar { 
             margin-top: 20px; background: #333; color: #fff; border: none; 
@@ -324,8 +320,15 @@
                     </div>
 
                     <div class="coluna-texto-projetos">
-                        <p><strong>Clique nas imagens para ampliar!</strong></p>
-                        <p>Ao lado estão registros fotográficos de atividades e projetos desenvolvidos com os alunos.</p>
+                        <p style="text-align: justify; margin-bottom: 15px;">
+                            A Sala Maker é um espaço fundamental para estimular criatividade, inovação e aprendizagem prática na escola. Ali, os estudantes experimentam, testam ideias e desenvolvem projetos que conectam o conteúdo às demandas do mundo real.
+                        </p>
+                        <p style="text-align: justify; margin-bottom: 15px;">
+                            O PROATI fortalece esse trabalho ao integrar a tecnologia ao cotidiano escolar, oferecendo suporte aos professores e orientando o uso dos recursos digitais. Atua como ponte entre a prática pedagógica e as ferramentas tecnológicas, garantindo que a Sala Maker funcione de forma dinâmica, inclusiva e realmente transformadora.
+                        </p>
+                        <p style="font-weight: bold; color: var(--cor-destaque); margin-top: 10px;">
+                            Aleandro Ferreira
+                        </p>
                     </div>
 
                     <div class="coluna-quadros">
