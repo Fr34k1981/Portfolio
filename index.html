@@ -14,7 +14,8 @@
             --bg-fundo: #1a1a1d; 
             --bg-conteudo: #ffffff; 
             --cor-destaque: #6f00ff; /* Roxo Neon */
-            --cor-secundaria: #ff0055; 
+            --cor-secundaria: #ff0055; /* Rosa Neon */
+            --cor-terciaria: #00f3ff; /* Ciano Neon (Novo Subtítulo) */
             --cor-texto: #212121;
             
             --fonte-titulo: 'Bangers', system-ui; 
@@ -42,8 +43,8 @@
             position: relative;
             width: 95%;
             max-width: 500px;
-            height: 85vh;
-            max-height: 800px;
+            height: 90vh; /* Aumentei um pouco a altura geral */
+            max-height: 850px;
             background-color: var(--bg-conteudo);
             border-radius: 15px;
             box-shadow: 0 0 30px rgba(111, 0, 255, 0.3); 
@@ -91,9 +92,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;     
-            justify-content: center; 
-            gap: 15px;
-            min-height: 100%; 
+            justify-content: space-between; /* Distribui melhor o espaço */
+            gap: 10px;
+            height: 100%; /* Força ocupar altura total para o flex funcionar */
         }
 
         @keyframes fadeIn {
@@ -110,56 +111,74 @@
             text-transform: uppercase;
             text-align: center;
             text-shadow: 2px 2px 0px #000;
-            line-height: 1.1;
+            line-height: 1;
+            cursor: default;
+            transition: color 0.3s;
         }
         
-        /* Efeito no texto "Aleandro F" */
         .nome-destaque {
             color: var(--cor-secundaria);
-            display: block; /* Garante que fique na linha de baixo se precisar */
-            font-size: 3rem; /* Um pouco maior que o "Portfólio" */
+            display: block; 
+            font-size: 3rem; 
+            transition: color 0.3s, text-shadow 0.3s; /* Animação suave */
         }
 
-        h2 {
-            font-family: var(--fonte-titulo);
-            color: var(--cor-destaque);
-            border-left: 5px solid var(--cor-secundaria);
-            padding-left: 10px;
+        /* CORREÇÃO DO HOVER: Agora afeta o Aleandro F. */
+        h1:hover {
+            color: var(--cor-secundaria); /* Muda o 'Portfólio' para Rosa */
+        }
+        
+        h1:hover .nome-destaque {
+            color: #fff; /* Muda o 'Aleandro' para Branco */
+            text-shadow: 0 0 10px var(--cor-secundaria), 2px 2px 0 #000; /* Brilho rosa */
         }
 
-        p { color: #555; line-height: 1.5; font-size: 1rem; }
-        .subtitulo { color: #658; font-weight: bold; margin-bottom: 5px; font-size: 0.9rem; text-align: center; }
+        /* NOVO SUBTÍTULO ESCOLAR */
+        .subtitulo-escola {
+            font-family: var(--fonte-corpo);
+            color: var(--cor-terciaria); /* CIANO NEON */
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            text-align: center;
+            letter-spacing: 0.5px;
+            margin-top: 5px;
+            background: #111;
+            padding: 5px 10px;
+            border-radius: 4px;
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+        }
 
-        /* --- FOTO COM ZOOM --- */
+        /* --- FOTO MAIOR E AJUSTÁVEL --- */
         .banner-container {
-            width: auto;
-            max-width: 100%;
+            width: 100%;
+            /* Flex-grow faz a foto ocupar o espaço que sobrar na tela */
+            flex-grow: 1; 
+            max-height: 50vh; /* Limite para não empurrar o menu para fora */
+            min-height: 200px; /* Tamanho mínimo */
+            
             display: flex;
             justify-content: center;
+            align-items: center;
+            
             margin: 10px 0;
             padding: 5px;
             border: 2px dashed #ccc;
             border-radius: 8px;
-            
-            /* IMPORTANTE: Impede que o zoom saia para fora da caixa */
             overflow: hidden; 
             cursor: pointer;
         }
 
         .banner-img {
-            height: 220px;
-            width: auto;
-            max-width: 100%;
-            object-fit: contain;
+            height: 100%; /* Ocupa a altura disponível do container */
+            width: 100%;
+            object-fit: contain; /* Garante que a foto apareça inteira */
             border-radius: 4px;
-            
-            /* A MÁGICA DO ZOOM: Transição suave */
             transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        /* Quando passar o mouse na caixa, aumenta a imagem */
         .banner-container:hover .banner-img {
-            transform: scale(1.15); /* Aumenta 15% */
+            transform: scale(1.1); /* Zoom */
         }
 
         /* --- MENU --- */
@@ -171,6 +190,7 @@
             gap: 10px;
             padding: 0;
             list-style: none;
+            margin-bottom: 10px; /* Espaço no final */
         }
 
         .menu-lista button {
@@ -196,39 +216,15 @@
             box-shadow: 4px 4px 0 #000;
         }
 
-        .btn-voltar {
-            margin-top: 20px;
-            background: #333;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        /* --- CARROSSEL --- */
-        .carousel-wrapper {
-            margin-top: 20px;
-            border: 2px solid #333;
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-        }
+        /* Resto dos estilos (Títulos internos, botões, carrossel) */
+        h2 { font-family: var(--fonte-titulo); color: var(--cor-destaque); border-left: 5px solid var(--cor-secundaria); padding-left: 10px; }
+        p { color: #555; line-height: 1.5; font-size: 1rem; }
+        .btn-voltar { margin-top: 20px; background: #333; color: #fff; border: none; padding: 10px 20px; border-radius: 4px; font-weight: bold; cursor: pointer; }
+        .carousel-wrapper { margin-top: 20px; border: 2px solid #333; border-radius: 8px; overflow: hidden; position: relative; }
         .carousel-slides { display: flex; transition: transform 0.4s ease; }
         .slide img { width: 100%; display: block; }
-        .nav-btn {
-            position: absolute; top: 50%; transform: translateY(-50%);
-            background: rgba(0,0,0,0.5); color: #fff; border: none;
-            padding: 10px; cursor: pointer;
-        }
+        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: #fff; border: none; padding: 10px; cursor: pointer; }
         .prev { left: 0; } .next { right: 0; }
-
-        @media (max-height: 700px) {
-            .banner-img { height: 180px; }
-            h1 { font-size: 2rem; }
-            .livro-container { height: 95vh; }
-        }
     </style>
 </head>
 <body>
@@ -238,12 +234,12 @@
 
             <div id="pag1" class="pagina-conteudo ativa">
                 
-                <div>
+                <div style="width: 100%; text-align: center;">
                     <h1>
                         Portfólio <br> 
                         <span class="nome-destaque">Aleandro F.</span>
                     </h1>
-                    <p class="subtitulo">PROATI - Prof. Paulo Americo Paganucci - 2025</p>
+                    <p class="subtitulo-escola">PROATI - Prof. Paulo Americo Paganucci - 2025</p>
                 </div>
 
                 <div class="banner-container">
@@ -252,12 +248,12 @@
                          class="banner-img">
                 </div>
 
-                <div class="menu-lista">
-                    <button onclick="mudarPagina('pag2')">01. QUEM SOU EU</button>
-                    <button onclick="mudarPagina('pag3')">02. MEUS PROJETOS</button>
-                    <button onclick="mudarPagina('pag4')">03. TEXTOS</button>
-                    <button onclick="mudarPagina('pag5')">04. CONTATO</button>
-                </div>
+                <ul class="menu-lista">
+                    <li><button onclick="mudarPagina('pag2')">01. QUEM SOU EU</button></li>
+                    <li><button onclick="mudarPagina('pag3')">02. MEUS PROJETOS</button></li>
+                    <li><button onclick="mudarPagina('pag4')">03. TEXTOS</button></li>
+                    <li><button onclick="mudarPagina('pag5')">04. CONTATO</button></li>
+                </ul>
             </div>
 
             <div id="pag2" class="pagina-conteudo">
@@ -269,8 +265,6 @@
 
             <div id="pag3" class="pagina-conteudo">
                 <h2>02 // Galeria</h2>
-                <p>Destaques recentes:</p>
-                
                 <div class="carousel-wrapper">
                     <div class="carousel-slides" id="carouselSlides">
                         <div class="slide"><img src="https://placehold.co/600x300/111/FFF?text=Projeto+01" alt="P1"></div>
@@ -280,14 +274,13 @@
                     <button class="nav-btn prev" onclick="mudarSlide(-1)">&#10094;</button>
                     <button class="nav-btn next" onclick="mudarSlide(1)">&#10095;</button>
                 </div>
-
                 <button class="btn-voltar" onclick="mudarPagina('pag1')">Voltar</button>
             </div>
 
             <div id="pag4" class="pagina-conteudo">
                 <h2>03 // Arquivos</h2>
                 <div style="background: #f9f9f9; padding: 15px; border-left: 4px solid var(--cor-destaque); margin-bottom: 10px;">
-                    <h3 style="margin:0; font-size: 1.1rem;">Minhas Crônicas</h3>
+                    <h3 style="margin:0; font-size: 1.1rem; font-family:var(--fonte-corpo); font-weight:bold;">Minhas Crônicas</h3>
                     <p style="margin:5px 0 0 0; font-size: 0.9rem;">Pensamentos e narrativas.</p>
                 </div>
                 <button class="btn-voltar" onclick="mudarPagina('pag1')">Voltar</button>
@@ -297,7 +290,6 @@
                 <h2>04 // Fale Comigo</h2>
                 <div style="background: #111; color: #fff; padding: 20px; border-radius: 8px; text-align: center;">
                     <p>📧 aleandro@exemplo.com</p>
-                    <p>📱 (XX) XXXXX-XXXX</p>
                 </div>
                 <button class="btn-voltar" onclick="mudarPagina('pag1')">Voltar</button>
             </div>
@@ -323,7 +315,4 @@
         }
     </script>
 </body>
-
 </html>
-
-
