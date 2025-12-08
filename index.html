@@ -13,9 +13,9 @@
         :root {
             --bg-fundo: #1a1a1d; 
             --bg-conteudo: #ffffff; 
-            --cor-destaque: #6f00ff; /* Roxo */
-            --cor-secundaria: #ff0055; /* Rosa */
-            --cor-subtitulo: #FFD700; /* Dourado */
+            --cor-destaque: #6f00ff; 
+            --cor-secundaria: #ff0055; 
+            --cor-subtitulo: #FFD700; 
             --cor-texto: #212121;
             
             --fonte-titulo: 'Bangers', system-ui; 
@@ -40,75 +40,39 @@
 
         /* LIGHTBOX */
         .lightbox-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(5px);
-            z-index: 9999;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(5px); z-index: 9999;
+            display: none; justify-content: center; align-items: center; cursor: pointer;
             animation: fadeIn 0.3s ease;
         }
         .lightbox-overlay.active { display: flex; }
-
         .lightbox-img {
-            max-width: 90%;
-            max-height: 90%;
-            border: 4px solid var(--cor-destaque);
-            border-radius: 8px;
-            box-shadow: 0 0 30px var(--cor-destaque);
-            object-fit: contain;
-            transform: scale(0.9);
-            animation: zoomIn 0.3s forwards;
+            max-width: 90%; max-height: 90%; border: 4px solid var(--cor-destaque);
+            border-radius: 8px; box-shadow: 0 0 30px var(--cor-destaque);
+            object-fit: contain; transform: scale(0.9); animation: zoomIn 0.3s forwards;
         }
         @keyframes zoomIn { to { transform: scale(1); } }
 
-        /* CONTAINER PRINCIPAL */
+        /* CONTAINER */
         .livro-container {
-            position: relative;
-            width: 95%;
-            max-width: 800px;
-            height: 90vh;
-            max-height: 850px;
-            background-color: var(--bg-conteudo);
-            border-radius: 15px;
-            box-shadow: 0 0 30px rgba(111, 0, 255, 0.3); 
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            border: 3px solid var(--cor-destaque);
+            position: relative; width: 95%; max-width: 850px; height: 90vh; max-height: 850px;
+            background-color: var(--bg-conteudo); border-radius: 15px;
+            box-shadow: 0 0 30px rgba(111, 0, 255, 0.3); display: flex; flex-direction: column;
+            overflow: hidden; border: 3px solid var(--cor-destaque);
         }
 
         .area-conteudo-paginas {
-            flex-grow: 1;
-            position: relative;
-            overflow-y: auto;
-            scroll-behavior: smooth;
-            scrollbar-width: thin;
-            scrollbar-color: var(--cor-destaque) #f0f0f0;
+            flex-grow: 1; position: relative; overflow-y: auto;
+            scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: var(--cor-destaque) #f0f0f0;
         }
         .area-conteudo-paginas::-webkit-scrollbar { width: 8px; }
         .area-conteudo-paginas::-webkit-scrollbar-track { background: #f1f1f1; }
         .area-conteudo-paginas::-webkit-scrollbar-thumb { background-color: var(--cor-destaque); border-radius: 4px; }
 
         .pagina-conteudo {
-            padding: 20px 30px;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            min-height: 100%;
-            box-sizing: border-box;
-            display: none;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            padding: 20px 30px; position: absolute; top: 0; left: 0; width: 100%; min-height: 100%;
+            box-sizing: border-box; display: none; opacity: 0; transition: opacity 0.3s ease;
         }
-
         .pagina-conteudo.ativa { display: block; opacity: 1; animation: fadeIn 0.5s forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -119,53 +83,34 @@
         }
 
         h1 {
-            font-family: var(--fonte-titulo);
-            color: var(--cor-destaque);
-            font-size: 2.5rem;
-            margin: 0;
-            text-transform: uppercase;
-            text-align: center;
-            text-shadow: 2px 2px 0px #000;
-            line-height: 1;
-            cursor: default;
-            transition: all 0.3s ease;
+            font-family: var(--fonte-titulo); color: var(--cor-destaque); font-size: 2.5rem;
+            margin: 0; text-transform: uppercase; text-align: center; text-shadow: 2px 2px 0px #000;
+            line-height: 1; cursor: default; transition: all 0.3s ease;
         }
         h1:hover { transform: scale(1.05); }
 
-        .nome-destaque {
-            color: var(--cor-secundaria);
-            display: block; 
-            font-size: 3rem; 
-            transition: color 0.3s, text-shadow 0.3s; 
-        }
-        h1:hover .nome-destaque {
-            color: #fff;
-            text-shadow: 0 0 15px var(--cor-secundaria), 2px 2px 0 #000;
-        }
+        .nome-destaque { color: var(--cor-secundaria); display: block; font-size: 3rem; transition: color 0.3s, text-shadow 0.3s; }
+        h1:hover .nome-destaque { color: #fff; text-shadow: 0 0 15px var(--cor-secundaria), 2px 2px 0 #000; }
 
         .subtitulo-escola {
-            font-family: var(--fonte-corpo); color: var(--cor-subtitulo);
-            font-weight: bold; text-transform: uppercase; font-size: 0.9rem;
-            text-align: center; margin-top: 5px; transition: 0.3s;
+            font-family: var(--fonte-corpo); color: var(--cor-subtitulo); font-weight: bold;
+            text-transform: uppercase; font-size: 0.9rem; text-align: center; margin-top: 5px; transition: 0.3s;
         }
-        .subtitulo-escola:hover { letter-spacing: 1px; color: #d4b000; }
 
         .banner-container {
-            width: 100%; height: auto; max-height: 250px;
-            display: flex; justify-content: center; align-items: center;
-            margin: 10px 0; padding: 5px;
-            border: 2px dashed #ccc; border-radius: 8px; overflow: hidden; 
-            cursor: zoom-in;
+            width: 100%; height: auto; max-height: 250px; display: flex; justify-content: center;
+            align-items: center; margin: 10px 0; padding: 5px; border: 2px dashed #ccc;
+            border-radius: 8px; overflow: hidden; cursor: zoom-in;
         }
         .banner-img {
-            height: 100%; width: auto; max-width: 100%;
-            object-fit: contain; border-radius: 4px; transition: transform 0.4s;
+            height: 100%; width: auto; max-width: 100%; object-fit: contain;
+            border-radius: 4px; transition: transform 0.4s;
         }
         .banner-container:hover .banner-img { transform: scale(1.15); }
 
         .menu-lista {
-            display: flex; flex-direction: column; width: 100%; max-width: 280px; 
-            gap: 12px; padding: 0; list-style: none; margin: 10px 0;
+            display: flex; flex-direction: column; width: 100%; max-width: 280px; gap: 12px;
+            padding: 0; list-style: none; margin: 10px 0;
         }
         .menu-lista button {
             background: #fff; border: 2px solid #333; color: #333; padding: 12px;
@@ -178,23 +123,12 @@
             transform: translate(-3px, -3px); box-shadow: 6px 6px 0 #000;
         }
 
-        /* --- ESTILOS INTERNOS --- */
+        /* --- INTERNAS --- */
         h2 { 
-            font-family: var(--fonte-titulo); 
-            color: #333; 
-            border-left: 5px solid var(--cor-secundaria); 
-            padding-left: 10px;
-            margin-top: 0;
-            transition: all 0.3s;
-            cursor: default;
-            width: 100%;
+            font-family: var(--fonte-titulo); color: #333; border-left: 5px solid var(--cor-secundaria); 
+            padding-left: 10px; margin-top: 0; transition: all 0.3s; cursor: default; width: 100%;
         }
-        h2:hover {
-            color: var(--cor-destaque); 
-            border-left-width: 15px; 
-            padding-left: 20px; 
-            text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
-        }
+        h2:hover { color: var(--cor-destaque); border-left-width: 15px; padding-left: 20px; }
 
         .texto-bio { color: #333; line-height: 1.6; font-size: 1rem; text-align: justify; margin-bottom: 15px; }
 
@@ -204,60 +138,29 @@
             box-shadow: 3px 3px 0 rgba(0,0,0,0.1); transition: transform 0.3s;
         }
         .foto-perfil-container:hover { transform: rotate(2deg) scale(1.05); } 
-        
         .foto-perfil-img { width: 100%; height: auto; display: block; }
         .conteudo-com-foto::after { content: ""; display: table; clear: both; }
 
-        /* --- GALERIA SALA MAKER (PAG 3) --- */
+        /* --- GRADE 3 COLUNAS (SALA MAKER) --- */
         .layout-projetos {
-            display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 15px;
+            display: grid; grid-template-columns: 1fr 1.8fr 1fr; gap: 15px;
             align-items: start; margin-top: 20px;
         }
         .coluna-quadros { display: flex; flex-direction: column; gap: 15px; }
 
         .quadro-pequeno {
             border: 2px dashed #ccc; border-radius: 6px; padding: 5px;
-            background: #fff; text-align: center; transition: all 0.2s;
-            cursor: zoom-in;
+            background: #fff; text-align: center; transition: all 0.2s; cursor: zoom-in;
         }
         .quadro-pequeno:hover { 
-            transform: scale(1.05) translateY(-5px); 
-            border-color: var(--cor-destaque);
+            transform: scale(1.05) translateY(-5px); border-color: var(--cor-destaque);
             box-shadow: 0 5px 15px rgba(111, 0, 255, 0.2);
         }
 
         .img-quadro { width: 100%; height: 80px; object-fit: cover; border-radius: 4px; display: block; }
         .legenda-quadro { margin: 5px 0 0 0; font-size: 0.8rem; color: var(--cor-destaque); font-weight: bold; text-transform: uppercase; }
 
-        .coluna-texto-projetos { padding: 0 10px; text-align: center; font-size: 0.95rem; color: #555; }
-
-        /* --- ESTILOS PÁGINA 4 (ESCOLA) --- */
-        .container-escola {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .box-imagem-aleatoria {
-            width: 100%;
-            max-width: 600px;
-            height: 300px; /* Altura fixa para não pular */
-            border: 3px solid var(--cor-destaque);
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-            background: #000;
-            box-shadow: 5px 5px 0 rgba(0,0,0,0.2);
-        }
-
-        .img-rotativa {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 1;
-            transition: opacity 0.5s ease-in-out; /* Fade suave */
-        }
+        .coluna-texto-projetos { padding: 0 10px; font-size: 0.9rem; color: #555; }
 
         .btn-voltar { 
             margin-top: 20px; background: #333; color: #fff; border: none; 
@@ -269,7 +172,6 @@
         @media (max-width: 700px) {
             .layout-projetos { grid-template-columns: 1fr 1fr; } 
             .coluna-texto-projetos { grid-column: span 2; order: -1; margin-bottom: 15px; }
-            .box-imagem-aleatoria { height: 200px; }
         }
     </style>
 </head>
@@ -284,22 +186,16 @@
 
             <div id="pag1" class="pagina-conteudo ativa">
                 <div style="width: 100%; text-align: center;">
-                    <h1>
-                        Portfólio <br> 
-                        <span class="nome-destaque">Aleandro F.</span>
-                    </h1>
+                    <h1>Portfólio <br> <span class="nome-destaque">Aleandro F.</span></h1>
                     <div class="subtitulo-escola">PROATI - Prof. Paulo Americo Paganucci - 2025</div>
                 </div>
-
                 <div class="banner-container" onclick="abrirImagem('https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg')">
-                    <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg" 
-                         alt="Aleandro F." class="banner-img">
+                    <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg" alt="Aleandro F." class="banner-img">
                 </div>
-
                 <ul class="menu-lista">
                     <li><button onclick="mudarPagina('pag2')">01. QUEM SOU EU</button></li>
                     <li><button onclick="mudarPagina('pag3')">02. SALA MAKER</button></li>
-                    <li><button onclick="mudarPagina('pag4')">03. ESCOLA</button></li>
+                    <li><button onclick="mudarPagina('pag4')">03. TEXTOS</button></li>
                     <li><button onclick="mudarPagina('pag5')">04. CONTATO</button></li>
                 </ul>
             </div>
@@ -308,65 +204,58 @@
                 <h2>01 // Sobre Aleandro</h2>
                 <div class="conteudo-com-foto">
                     <div class="foto-perfil-container">
-                        <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/82fc5ad632e8aeb376db0fdd2120bb10c54ddeff/IMG-20251013-WA0004.jpg" 
-                             alt="Foto de Perfil" class="foto-perfil-img"
-                             onclick="abrirImagem(this.src)" style="cursor: zoom-in;">
+                        <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/82fc5ad632e8aeb376db0fdd2120bb10c54ddeff/IMG-20251013-WA0004.jpg" alt="Foto de Perfil" class="foto-perfil-img" onclick="abrirImagem(this.src)" style="cursor: zoom-in;">
                     </div>
-                    
-                    <p class="texto-bio">
-                        Sou professor da Secretaria da Educação do Estado de São Paulo desde 2013, construindo ao longo desses anos uma trajetória pautada pelo compromisso com a formação humana, pelo diálogo e pela prática pedagógica responsável. Minha atuação abrange as áreas de História, Filosofia e Sociologia, sempre com foco na construção crítica do conhecimento e no fortalecimento da autonomia intelectual dos estudantes.
-                    </p>
-                    <p class="texto-bio">
-                        Em 2024, consolidei uma etapa importante da minha carreira ao assumir o cargo na escola Paulo Américo Paganucci, conquistado por concurso público, reafirmando meu compromisso com a educação pública e com o desenvolvimento contínuo da minha prática docente. Esse período representa não apenas a continuidade do meu trabalho, mas também a maturidade profissional adquirida ao longo de mais de uma década de dedicação à rede estadual.
-                    </p>
+                    <p class="texto-bio">Sou professor da Secretaria da Educação do Estado de São Paulo desde 2013, construindo ao longo desses anos uma trajetória pautada pelo compromisso com a formação humana, pelo diálogo e pela prática pedagógica responsável. Minha atuação abrange as áreas de História, Filosofia e Sociologia, sempre com foco na construção crítica do conhecimento e no fortalecimento da autonomia intelectual dos estudantes.</p>
+                    <p class="texto-bio">Em 2024, consolidei uma etapa importante da minha carreira ao assumir o cargo na escola Paulo Américo Paganucci, conquistado por concurso público, reafirmando meu compromisso com a educação pública e com o desenvolvimento contínuo da minha prática docente. Esse período representa não apenas a continuidade do meu trabalho, mas também a maturidade profissional adquirida ao longo de mais de uma década de dedicação à rede estadual.</p>
                 </div>
                 <button class="btn-voltar" onclick="mudarPagina('pag1')">Voltar</button>
             </div>
 
             <div id="pag3" class="pagina-conteudo">
                 <h2>02 // Sala Maker</h2>
-                <p style="color:#666; font-style: italic; text-align:center;">Projetos e Atividades em Destaque</p>
+                <p style="color:#666; font-style: italic; text-align:center;">Projetos e Atividades</p>
 
                 <div class="layout-projetos">
                     
                     <div class="coluna-quadros">
-                        <div class="quadro-pequeno" onclick="abrirImagem('https://raw.githubusercontent.com/Fr34k1981/Portfolio/2896fac196db608e769ec766e6e2a9836a11dc99/img1.jpg')">
-                            <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/2896fac196db608e769ec766e6e2a9836a11dc99/img1.jpg" class="img-quadro">
+                        <div class="quadro-pequeno" onclick="abrirImagem('https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg')">
+                            <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg" class="img-quadro">
                             <p class="legenda-quadro">Ver foto</p>
                         </div>
-                        <div class="quadro-pequeno" onclick="abrirImagem('https://raw.githubusercontent.com/Fr34k1981/Portfolio/b79cb2a10266765edf791e299108950e654d6fe2/img2.jpg')">
-                            <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/b79cb2a10266765edf791e299108950e654d6fe2/img2.jpg" class="img-quadro">
+                        <div class="quadro-pequeno" onclick="abrirImagem('https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg')">
+                            <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg" class="img-quadro">
                             <p class="legenda-quadro">Ver foto</p>
                         </div>
-                        <div class="quadro-pequeno" onclick="abrirImagem('https://raw.githubusercontent.com/Fr34k1981/Portfolio/b79cb2a10266765edf791e299108950e654d6fe2/img3.jpg')">
-                            <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/b79cb2a10266765edf791e299108950e654d6fe2/img3.jpg" class="img-quadro">
+                        <div class="quadro-pequeno" onclick="abrirImagem('https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg')">
+                            <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg" class="img-quadro">
                             <p class="legenda-quadro">Ver foto</p>
                         </div>
                     </div>
 
                     <div class="coluna-texto-projetos">
-                        <p style="text-align: justify; margin-bottom: 15px;">
+                        <p style="text-align: justify; margin-bottom: 10px;">
                             A Sala Maker é um espaço fundamental para estimular criatividade, inovação e aprendizagem prática na escola. Ali, os estudantes experimentam, testam ideias e desenvolvem projetos que conectam o conteúdo às demandas do mundo real.
                         </p>
-                        <p style="text-align: justify; margin-bottom: 15px;">
+                        <p style="text-align: justify; margin-bottom: 10px;">
                             O PROATI fortalece esse trabalho ao integrar a tecnologia ao cotidiano escolar, oferecendo suporte aos professores e orientando o uso dos recursos digitais. Atua como ponte entre a prática pedagógica e as ferramentas tecnológicas, garantindo que a Sala Maker funcione de forma dinâmica, inclusiva e realmente transformadora.
                         </p>
-                        <p style="font-weight: bold; color: var(--cor-destaque); margin-top: 10px;">
+                        <p style="font-weight: bold; color: var(--cor-destaque); margin-top: 10px; text-align: right;">
                             Aleandro Ferreira
                         </p>
                     </div>
 
                     <div class="coluna-quadros">
-                        <div class="quadro-pequeno" onclick="abrirImagem('https://raw.githubusercontent.com/Fr34k1981/Portfolio/b79cb2a10266765edf791e299108950e654d6fe2/img4.jpg')">
-                            <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/b79cb2a10266765edf791e299108950e654d6fe2/img4.jpg" class="img-quadro">
+                        <div class="quadro-pequeno" onclick="abrirImagem('https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg')">
+                            <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg" class="img-quadro">
                             <p class="legenda-quadro">Ver foto</p>
                         </div>
-                        <div class="quadro-pequeno" onclick="abrirImagem('https://raw.githubusercontent.com/Fr34k1981/Portfolio/b79cb2a10266765edf791e299108950e654d6fe2/img5.jpg')">
-                            <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/b79cb2a10266765edf791e299108950e654d6fe2/img5.jpg" class="img-quadro">
+                        <div class="quadro-pequeno" onclick="abrirImagem('https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg')">
+                            <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg" class="img-quadro">
                             <p class="legenda-quadro">Ver foto</p>
                         </div>
-                        <div class="quadro-pequeno" onclick="abrirImagem('https://raw.githubusercontent.com/Fr34k1981/Portfolio/b79cb2a10266765edf791e299108950e654d6fe2/img6.jpg')">
-                            <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/b79cb2a10266765edf791e299108950e654d6fe2/img6.jpg" class="img-quadro">
+                        <div class="quadro-pequeno" onclick="abrirImagem('https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg')">
+                            <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg" class="img-quadro">
                             <p class="legenda-quadro">Ver foto</p>
                         </div>
                     </div>
@@ -376,28 +265,11 @@
             </div>
 
             <div id="pag4" class="pagina-conteudo">
-                <h2>03 // Paulo Américo Paganucci</h2>
-                
-                <div class="container-escola">
-                    
-                    <div class="box-imagem-aleatoria">
-                        <img id="img-rotativa" src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/8af9b8917eaa03224abb234d092f6db79928517d/img8.jpg" class="img-rotativa" alt="Escola">
-                    </div>
-
-                    <div>
-                        <p class="texto-bio">
-                            A Escola Estadual Paulo Américo Paganucci está inserida em um território marcado por forte fragilidade social, onde a escola se torna um ponto de amparo e possibilidade para seus estudantes. Nesse contexto, o uso responsável da tecnologia é essencial para ampliar oportunidades e fortalecer a aprendizagem.
-                        </p>
-                        <p class="texto-bio">
-                            As avaliações externas, como Provão Paulista e SARESP, ajudam a identificar necessidades e orientar intervenções pedagógicas. Já as plataformas digitais da rede, como Leia, Sala do Futuro, Alura, Matific e outras, ampliam repertórios, desenvolvem autonomia e conectam o estudante a formas mais atuais de aprender.
-                        </p>
-                        <p class="texto-bio">
-                            Para que todos esses recursos funcionem de maneira articulada e eficaz, o PROATI é indispensável. Ele orienta o uso das tecnologias, apoia professores, acompanha estudantes e garante que cada ferramenta digital contribua para a formação integral dentro das realidades e desafios do Paganucci.
-                        </p>
-                    </div>
-
+                <h2>03 // Arquivos</h2>
+                <div style="background: #f9f9f9; padding: 15px; border-left: 4px solid var(--cor-destaque); margin-bottom: 10px;">
+                    <h3 style="margin:0; font-size: 1.1rem; color:#333;">Minhas Crônicas</h3>
+                    <p style="margin:5px 0 0 0; font-size: 0.9rem;">Pensamentos e narrativas.</p>
                 </div>
-
                 <button class="btn-voltar" onclick="mudarPagina('pag1')">Voltar</button>
             </div>
 
@@ -413,40 +285,6 @@
     </div>
 
     <script>
-        // Links das imagens da escola para rotação
-        const imagensEscola = [
-            "https://raw.githubusercontent.com/Fr34k1981/Portfolio/8af9b8917eaa03224abb234d092f6db79928517d/img8.jpg",
-            "https://raw.githubusercontent.com/Fr34k1981/Portfolio/8af9b8917eaa03224abb234d092f6db79928517d/img6.jpg",
-            "https://raw.githubusercontent.com/Fr34k1981/Portfolio/8af9b8917eaa03224abb234d092f6db79928517d/img7.jpg",
-            "https://raw.githubusercontent.com/Fr34k1981/Portfolio/8af9b8917eaa03224abb234d092f6db79928517d/img9.jpg",
-            "https://raw.githubusercontent.com/Fr34k1981/Portfolio/8af9b8917eaa03224abb234d092f6db79928517d/img10.jpg"
-        ];
-
-        // Função que troca a imagem aleatoriamente
-        function iniciarSlideEscola() {
-            const imgElement = document.getElementById('img-rotativa');
-            if(!imgElement) return;
-
-            setInterval(() => {
-                // Efeito de fade out
-                imgElement.style.opacity = 0;
-                
-                setTimeout(() => {
-                    // Troca a imagem
-                    const randomIndex = Math.floor(Math.random() * imagensEscola.length);
-                    imgElement.src = imagensEscola[randomIndex];
-                    // Efeito de fade in
-                    imgElement.style.opacity = 1;
-                }, 500); // Espera meio segundo para trocar (tempo do fade)
-                
-            }, 4000); // Troca a cada 4 segundos
-        }
-
-        // Inicia o slide assim que a página carrega
-        window.onload = function() {
-            iniciarSlideEscola();
-        };
-
         function mudarPagina(id) {
             document.querySelectorAll('.pagina-conteudo').forEach(p => p.classList.remove('ativa'));
             document.getElementById(id).classList.add('ativa');
