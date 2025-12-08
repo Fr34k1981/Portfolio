@@ -163,7 +163,7 @@
 
         .coluna-texto-projetos { padding: 0 10px; font-size: 0.95rem; color: #555; }
 
-        /* --- SLIDESHOW CORRIGIDO (PAG 4) --- */
+        /* --- SLIDESHOW ESCOLA (PAG 4) --- */
         .container-escola {
             display: flex; flex-direction: column; align-items: center; gap: 20px;
         }
@@ -177,22 +177,18 @@
             cursor: zoom-in;
         }
 
-        /* Estilo para as imagens empilhadas */
         .slide-escola {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Não corta a imagem */
-            opacity: 0; /* Invisível por padrão */
-            transition: opacity 1s ease-in-out; /* Transição suave de 1s */
+            object-fit: contain;
+            opacity: 0;
+            transition: opacity 1s ease-in-out; /* Fade suave */
         }
 
-        /* Classe para mostrar a imagem atual */
-        .slide-escola.active {
-            opacity: 1;
-        }
+        .slide-escola.active { opacity: 1; }
 
         .btn-voltar { 
             margin-top: 20px; background: #333; color: #fff; border: none; 
@@ -287,8 +283,8 @@
                     <div class="box-imagem-rotativa" onclick="clicarSlideAtual()">
                         <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/8af9b8917eaa03224abb234d092f6db79928517d/img8.jpg" class="slide-escola active">
                         <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/8af9b8917eaa03224abb234d092f6db79928517d/img6.jpg" class="slide-escola">
-                        <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/8af9b8917eaa03224abb234d092f6db79928517d/img7.jpg" class="slide-escola">
-                        <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/8af9b8917eaa03224abb234d092f6db79928517d/img9.jpg" class="slide-escola">
+                        <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/3c82c8d1a40579f7dc44b96e475bca2e88d609e5/Img7.jpg" class="slide-escola">
+                        <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/3c82c8d1a40579f7dc44b96e475bca2e88d609e5/IMG9.jpg" class="slide-escola">
                         <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/8af9b8917eaa03224abb234d092f6db79928517d/img10.jpg" class="slide-escola">
                     </div>
                     <div>
@@ -316,20 +312,19 @@
         let indiceSlideEscola = 0;
         
         function passarSlideEscola() {
-            // Pega todas as imagens do slide
             const slides = document.querySelectorAll('.slide-escola');
             if (slides.length === 0) return;
 
             // Remove a classe 'active' da imagem atual
             slides[indiceSlideEscola].classList.remove('active');
 
-            // Vai para a próxima (sequencial)
+            // Vai para a próxima
             indiceSlideEscola++;
             if (indiceSlideEscola >= slides.length) {
-                indiceSlideEscola = 0; // Volta para a primeira
+                indiceSlideEscola = 0; // Loop
             }
 
-            // Adiciona a classe 'active' na nova imagem
+            // Ativa a próxima
             slides[indiceSlideEscola].classList.add('active');
         }
 
