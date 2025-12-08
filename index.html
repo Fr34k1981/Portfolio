@@ -13,9 +13,9 @@
         :root {
             --bg-fundo: #1a1a1d; 
             --bg-conteudo: #ffffff; 
-            --cor-destaque: #6f00ff; 
-            --cor-secundaria: #ff0055; 
-            --cor-subtitulo: #FFD700; 
+            --cor-destaque: #6f00ff; /* Roxo Neon */
+            --cor-secundaria: #ff0055; /* Rosa Neon */
+            --cor-subtitulo: #FFD700; /* Dourado */
             --cor-texto: #212121;
             
             --fonte-titulo: 'Bangers', system-ui; 
@@ -38,10 +38,11 @@
             overflow: hidden;
         }
 
+        /* --- CONTAINER PRINCIPAL --- */
         .livro-container {
             position: relative;
             width: 95%;
-            max-width: 500px;
+            max-width: 800px; /* Aumentei a largura máxima para caber as 3 colunas */
             height: 90vh;
             max-height: 850px;
             background-color: var(--bg-conteudo);
@@ -53,6 +54,7 @@
             border: 3px solid var(--cor-destaque);
         }
 
+        /* --- ÁREA DE ROLAGEM --- */
         .area-conteudo-paginas {
             flex-grow: 1;
             position: relative;
@@ -62,11 +64,11 @@
             scrollbar-color: var(--cor-destaque) #f0f0f0;
         }
 
-        /* Scrollbar */
         .area-conteudo-paginas::-webkit-scrollbar { width: 8px; }
         .area-conteudo-paginas::-webkit-scrollbar-track { background: #f1f1f1; }
         .area-conteudo-paginas::-webkit-scrollbar-thumb { background-color: var(--cor-destaque); border-radius: 4px; }
 
+        /* --- PÁGINAS --- */
         .pagina-conteudo {
             padding: 20px 30px;
             position: absolute;
@@ -86,22 +88,78 @@
             animation: fadeIn 0.5s forwards;
         }
 
-        #pag1.ativa {
-            display: flex;
-            flex-direction: column;
-            align-items: center;     
-            justify-content: center;
-            gap: 15px;
-            padding-top: 20px;
-            padding-bottom: 20px;
-        }
-
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- TIPOGRAFIA --- */
+        /* --- NOVO LAYOUT DA HOME (PAG 1) --- */
+        #pag1.ativa {
+            display: block; /* Reseta o flex anterior */
+            height: 100%;
+            padding: 20px;
+        }
+
+        /* Grid de 3 colunas */
+        .layout-triplo {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr 1fr; /* Esquerda | Centro Maior | Direita */
+            gap: 20px;
+            height: 100%;
+            align-items: center; /* Centraliza verticalmente */
+        }
+
+        /* Colunas Laterais (Imagens) */
+        .coluna-lateral {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        /* Coluna Central (Texto e Menu) */
+        .coluna-central {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            height: 100%;
+        }
+
+        /* Novos Quadros com Legenda */
+        .quadro-com-legenda {
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            padding: 8px;
+            background: #fff;
+            text-align: center;
+            box-shadow: 3px 3px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        .quadro-com-legenda:hover {
+            transform: scale(1.05);
+            border-color: var(--cor-destaque);
+        }
+
+        .quadro-img {
+            width: 100%;
+            height: 90px; /* Altura fixa para os quadros laterais */
+            object-fit: cover;
+            border-radius: 4px;
+            display: block;
+        }
+
+        .legenda {
+            margin: 8px 0 0 0;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: var(--cor-destaque);
+            text-transform: uppercase;
+            font-family: var(--fonte-corpo);
+        }
+
+        /* --- TIPOGRAFIA DA HOME --- */
         h1 {
             font-family: var(--fonte-titulo);
             color: var(--cor-destaque);
@@ -135,35 +193,7 @@
             font-size: 0.9rem;
             text-align: center;
             margin-top: 5px;
-        }
-
-        /* --- FOTO HOME --- */
-        .banner-container {
-            width: 100%;
-            height: auto;
-            max-height: 250px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 10px 0;
-            padding: 5px;
-            border: 2px dashed #ccc;
-            border-radius: 8px;
-            overflow: hidden; 
-            cursor: pointer;
-        }
-
-        .banner-img {
-            height: 100%;
-            width: auto;
-            max-width: 100%;
-            object-fit: contain;
-            border-radius: 4px;
-            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .banner-container:hover .banner-img {
-            transform: scale(1.15);
+            margin-bottom: 20px;
         }
 
         /* --- MENU --- */
@@ -202,7 +232,7 @@
             box-shadow: 4px 4px 0 #000;
         }
 
-        /* --- PÁGINA 2: FOTO + TEXTO --- */
+        /* --- ESTILOS INTERNOS (PAG 2, 3, 4, 5) --- */
         h2 { 
             font-family: var(--fonte-titulo); 
             color: #333; 
@@ -219,12 +249,12 @@
             margin-bottom: 15px;
         }
 
-        /* CAIXA DA FOTO DE PERFIL */
+        /* CAIXA DA FOTO DE PERFIL (Página 2) */
         .foto-perfil-container {
-            width: 150px;      /* Tamanho ideal para texto fluir */
+            width: 180px;      
             height: auto;
-            float: right;      /* Joga a foto para direita */
-            margin-left: 15px; /* Afasta o texto da foto */
+            float: right;      
+            margin-left: 20px; 
             margin-bottom: 10px;
             border: 3px solid var(--cor-destaque);
             border-radius: 8px;
@@ -238,7 +268,6 @@
             display: block;
         }
 
-        /* Limpa o float para o botão não subir */
         .conteudo-com-foto::after {
             content: "";
             display: table;
@@ -251,6 +280,28 @@
         .slide img { width: 100%; display: block; }
         .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: #fff; border: none; padding: 10px; cursor: pointer; }
         .prev { left: 0; } .next { right: 0; }
+
+        /* --- RESPONSIVIDADE (CELULAR) --- */
+        @media (max-width: 768px) {
+            .layout-triplo {
+                grid-template-columns: 1fr; /* Empilha tudo */
+                gap: 20px;
+                height: auto;
+            }
+            /* Ordem no celular: Título primeiro */
+            .coluna-central { order: -1; margin-bottom: 20px; }
+            
+            /* Colunas laterais viram linhas horizontais no celular */
+            .coluna-lateral {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .quadro-com-legenda {
+                width: 30%; /* 3 por linha no celular */
+                min-width: 80px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -259,48 +310,75 @@
         <div class="area-conteudo-paginas">
 
             <div id="pag1" class="pagina-conteudo ativa">
-                <div style="width: 100%; text-align: center;">
-                    <h1>
-                        Portfólio <br> 
-                        <span class="nome-destaque">Aleandro F.</span>
-                    </h1>
-                    <div class="subtitulo-escola">PROATI - Prof. Paulo Americo Paganucci - 2025</div>
-                </div>
+                
+                <div class="layout-triplo">
+                    
+                    <div class="coluna-lateral">
+                        <div class="quadro-com-legenda">
+                            <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg" class="quadro-img" alt="Img 1">
+                            <p class="legenda">vamos tentar?</p>
+                        </div>
+                        <div class="quadro-com-legenda">
+                            <img src="https://placehold.co/150x150/6f00ff/fff" class="quadro-img" alt="Img 2">
+                            <p class="legenda">vamos tentar?</p>
+                        </div>
+                        <div class="quadro-com-legenda">
+                            <img src="https://placehold.co/150x150/ff0055/fff" class="quadro-img" alt="Img 3">
+                            <p class="legenda">vamos tentar?</p>
+                        </div>
+                    </div>
 
-                <div class="banner-container">
-                    <img src="IMG_20241125_124530.jpg" 
-                         alt="Aleandro F." 
-                         class="banner-img">
-                </div>
+                    <div class="coluna-central">
+                        <div>
+                            <h1>
+                                Portfólio <br> 
+                                <span class="nome-destaque">Aleandro F.</span>
+                            </h1>
+                            <div class="subtitulo-escola">PROATI - Prof. Paulo Americo Paganucci - 2025</div>
+                        </div>
 
-                <ul class="menu-lista">
-                    <li><button onclick="mudarPagina('pag2')">01. QUEM SOU EU</button></li>
-                    <li><button onclick="mudarPagina('pag3')">02. MEUS PROJETOS</button></li>
-                    <li><button onclick="mudarPagina('pag4')">03. TEXTOS</button></li>
-                    <li><button onclick="mudarPagina('pag5')">04. CONTATO</button></li>
-                </ul>
-            </div>
+                        <p style="color: #666; font-style: italic;">(Espaço central livre para texto)</p>
+
+                        <ul class="menu-lista">
+                            <li><button onclick="mudarPagina('pag2')">01. QUEM SOU EU</button></li>
+                            <li><button onclick="mudarPagina('pag3')">02. MEUS PROJETOS</button></li>
+                            <li><button onclick="mudarPagina('pag4')">03. TEXTOS</button></li>
+                            <li><button onclick="mudarPagina('pag5')">04. CONTATO</button></li>
+                        </ul>
+                    </div>
+
+                    <div class="coluna-lateral">
+                        <div class="quadro-com-legenda">
+                            <img src="https://placehold.co/150x150/ff0055/fff" class="quadro-img" alt="Img 4">
+                            <p class="legenda">vamos tentar?</p>
+                        </div>
+                        <div class="quadro-com-legenda">
+                            <img src="https://placehold.co/150x150/6f00ff/fff" class="quadro-img" alt="Img 5">
+                            <p class="legenda">vamos tentar?</p>
+                        </div>
+                        <div class="quadro-com-legenda">
+                            <img src="https://placehold.co/150x150/111/fff" class="quadro-img" alt="Img 6">
+                            <p class="legenda">vamos tentar?</p>
+                        </div>
+                    </div>
+
+                </div> </div>
 
             <div id="pag2" class="pagina-conteudo">
                 <h2>01 // Sobre Aleandro</h2>
-                
                 <div class="conteudo-com-foto">
-                    
                     <div class="foto-perfil-container">
-                        <img src="IMG-20251013-WA0004.jpg" 
+                        <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/82fc5ad632e8aeb376db0fdd2120bb10c54ddeff/IMG-20251013-WA0004.jpg" 
                              alt="Foto de Perfil" 
                              class="foto-perfil-img">
                     </div>
-
                     <p class="texto-bio">
                         Sou professor da Secretaria da Educação do Estado de São Paulo desde 2013, construindo ao longo desses anos uma trajetória pautada pelo compromisso com a formação humana, pelo diálogo e pela prática pedagógica responsável. Minha atuação abrange as áreas de História, Filosofia e Sociologia, sempre com foco na construção crítica do conhecimento e no fortalecimento da autonomia intelectual dos estudantes.
                     </p>
-                    
                     <p class="texto-bio">
                         Em 2024, consolidei uma etapa importante da minha carreira ao assumir o cargo na escola Paulo Américo Paganucci, conquistado por concurso público, reafirmando meu compromisso com a educação pública e com o desenvolvimento contínuo da minha prática docente. Esse período representa não apenas a continuidade do meu trabalho, mas também a maturidade profissional adquirida ao longo de mais de uma década de dedicação à rede estadual.
                     </p>
                 </div>
-
                 <button class="btn-voltar" onclick="mudarPagina('pag1')">Voltar</button>
             </div>
 
