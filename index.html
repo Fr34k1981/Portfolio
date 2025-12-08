@@ -55,10 +55,10 @@
 
         /* CONTAINER */
         .livro-container {
-            position: relative; width: 95%; max-width: 850px; height: 90vh; max-height: 850px;
+            position: relative; width: 95%; max-width: 800px; height: 90vh; max-height: 850px;
             background-color: var(--bg-conteudo); border-radius: 15px;
-            box-shadow: 0 0 30px rgba(111, 0, 255, 0.3); display: flex; flex-direction: column;
-            overflow: hidden; border: 3px solid var(--cor-destaque);
+            box-shadow: 0 0 30px rgba(111, 0, 255, 0.3); 
+            display: flex; flex-direction: column; overflow: hidden; border: 3px solid var(--cor-destaque);
         }
 
         .area-conteudo-paginas {
@@ -96,6 +96,7 @@
             font-family: var(--fonte-corpo); color: var(--cor-subtitulo); font-weight: bold;
             text-transform: uppercase; font-size: 0.9rem; text-align: center; margin-top: 5px; transition: 0.3s;
         }
+        .subtitulo-escola:hover { letter-spacing: 1px; color: #d4b000; }
 
         .banner-container {
             width: 100%; height: auto; max-height: 250px; display: flex; justify-content: center;
@@ -108,6 +109,7 @@
         }
         .banner-container:hover .banner-img { transform: scale(1.15); }
 
+        /* Menu */
         .menu-lista {
             display: flex; flex-direction: column; width: 100%; max-width: 280px; gap: 12px;
             padding: 0; list-style: none; margin: 10px 0;
@@ -141,9 +143,9 @@
         .foto-perfil-img { width: 100%; height: auto; display: block; }
         .conteudo-com-foto::after { content: ""; display: table; clear: both; }
 
-        /* --- GRADE 3 COLUNAS (SALA MAKER) --- */
+        /* --- GALERIA SALA MAKER (PAG 3) --- */
         .layout-projetos {
-            display: grid; grid-template-columns: 1fr 1.8fr 1fr; gap: 15px;
+            display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 15px;
             align-items: start; margin-top: 20px;
         }
         .coluna-quadros { display: flex; flex-direction: column; gap: 15px; }
@@ -160,7 +162,7 @@
         .img-quadro { width: 100%; height: 80px; object-fit: cover; border-radius: 4px; display: block; }
         .legenda-quadro { margin: 5px 0 0 0; font-size: 0.8rem; color: var(--cor-destaque); font-weight: bold; text-transform: uppercase; }
 
-        .coluna-texto-projetos { padding: 0 10px; font-size: 0.9rem; color: #555; }
+        .coluna-texto-projetos { padding: 0 10px; font-size: 0.95rem; color: #555; }
 
         .btn-voltar { 
             margin-top: 20px; background: #333; color: #fff; border: none; 
@@ -186,16 +188,22 @@
 
             <div id="pag1" class="pagina-conteudo ativa">
                 <div style="width: 100%; text-align: center;">
-                    <h1>Portfólio <br> <span class="nome-destaque">Aleandro F.</span></h1>
+                    <h1>
+                        Portfólio <br> 
+                        <span class="nome-destaque">Aleandro F.</span>
+                    </h1>
                     <div class="subtitulo-escola">PROATI - Prof. Paulo Americo Paganucci - 2025</div>
                 </div>
+
                 <div class="banner-container" onclick="abrirImagem('https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg')">
-                    <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg" alt="Aleandro F." class="banner-img">
+                    <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg" 
+                         alt="Aleandro F." class="banner-img">
                 </div>
+
                 <ul class="menu-lista">
                     <li><button onclick="mudarPagina('pag2')">01. QUEM SOU EU</button></li>
                     <li><button onclick="mudarPagina('pag3')">02. SALA MAKER</button></li>
-                    <li><button onclick="mudarPagina('pag4')">03. TEXTOS</button></li>
+                    <li><button onclick="mudarPagina('pag4')">03. A ESCOLA</button></li>
                     <li><button onclick="mudarPagina('pag5')">04. CONTATO</button></li>
                 </ul>
             </div>
@@ -204,40 +212,46 @@
                 <h2>01 // Sobre Aleandro</h2>
                 <div class="conteudo-com-foto">
                     <div class="foto-perfil-container">
-                        <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/82fc5ad632e8aeb376db0fdd2120bb10c54ddeff/IMG-20251013-WA0004.jpg" alt="Foto de Perfil" class="foto-perfil-img" onclick="abrirImagem(this.src)" style="cursor: zoom-in;">
+                        <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/82fc5ad632e8aeb376db0fdd2120bb10c54ddeff/IMG-20251013-WA0004.jpg" 
+                             alt="Foto de Perfil" class="foto-perfil-img"
+                             onclick="abrirImagem(this.src)" style="cursor: zoom-in;">
                     </div>
-                    <p class="texto-bio">Sou professor da Secretaria da Educação do Estado de São Paulo desde 2013, construindo ao longo desses anos uma trajetória pautada pelo compromisso com a formação humana, pelo diálogo e pela prática pedagógica responsável. Minha atuação abrange as áreas de História, Filosofia e Sociologia, sempre com foco na construção crítica do conhecimento e no fortalecimento da autonomia intelectual dos estudantes.</p>
-                    <p class="texto-bio">Em 2024, consolidei uma etapa importante da minha carreira ao assumir o cargo na escola Paulo Américo Paganucci, conquistado por concurso público, reafirmando meu compromisso com a educação pública e com o desenvolvimento contínuo da minha prática docente. Esse período representa não apenas a continuidade do meu trabalho, mas também a maturidade profissional adquirida ao longo de mais de uma década de dedicação à rede estadual.</p>
+                    <p class="texto-bio">
+                        Sou professor da Secretaria da Educação do Estado de São Paulo desde 2013, construindo ao longo desses anos uma trajetória pautada pelo compromisso com a formação humana, pelo diálogo e pela prática pedagógica responsável. Minha atuação abrange as áreas de História, Filosofia e Sociologia, sempre com foco na construção crítica do conhecimento e no fortalecimento da autonomia intelectual dos estudantes.
+                    </p>
+                    <p class="texto-bio">
+                        Em 2024, consolidei uma etapa importante da minha carreira ao assumir o cargo na escola Paulo Américo Paganucci, conquistado por concurso público, reafirmando meu compromisso com a educação pública e com o desenvolvimento contínuo da minha prática docente. Esse período representa não apenas a continuidade do meu trabalho, mas também a maturidade profissional adquirida ao longo de mais de uma década de dedicação à rede estadual.
+                    </p>
                 </div>
                 <button class="btn-voltar" onclick="mudarPagina('pag1')">Voltar</button>
             </div>
 
             <div id="pag3" class="pagina-conteudo">
                 <h2>02 // Sala Maker</h2>
-                <p style="color:#666; font-style: italic; text-align:center;">Projetos e Atividades</p>
+                <p style="color:#666; font-style: italic; text-align:center;">Projetos e Atividades em Destaque</p>
 
                 <div class="layout-projetos">
                     
                     <div class="coluna-quadros">
-                        <div class="quadro-pequeno" onclick="abrirImagem('https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg')">
-                            <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg" class="img-quadro">
+                        <div class="quadro-pequeno" onclick="abrirImagem('https://raw.githubusercontent.com/Fr34k1981/Portfolio/2896fac196db608e769ec766e6e2a9836a11dc99/img1.jpg')">
+                            <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/2896fac196db608e769ec766e6e2a9836a11dc99/img1.jpg" class="img-quadro">
                             <p class="legenda-quadro">Ver foto</p>
                         </div>
-                        <div class="quadro-pequeno" onclick="abrirImagem('https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg')">
-                            <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg" class="img-quadro">
+                        <div class="quadro-pequeno" onclick="abrirImagem('https://raw.githubusercontent.com/Fr34k1981/Portfolio/b79cb2a10266765edf791e299108950e654d6fe2/img2.jpg')">
+                            <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/b79cb2a10266765edf791e299108950e654d6fe2/img2.jpg" class="img-quadro">
                             <p class="legenda-quadro">Ver foto</p>
                         </div>
-                        <div class="quadro-pequeno" onclick="abrirImagem('https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg')">
-                            <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg" class="img-quadro">
+                        <div class="quadro-pequeno" onclick="abrirImagem('https://raw.githubusercontent.com/Fr34k1981/Portfolio/b79cb2a10266765edf791e299108950e654d6fe2/img3.jpg')">
+                            <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/b79cb2a10266765edf791e299108950e654d6fe2/img3.jpg" class="img-quadro">
                             <p class="legenda-quadro">Ver foto</p>
                         </div>
                     </div>
 
                     <div class="coluna-texto-projetos">
-                        <p style="text-align: justify; margin-bottom: 10px;">
+                        <p style="text-align: justify; margin-bottom: 15px;">
                             A Sala Maker é um espaço fundamental para estimular criatividade, inovação e aprendizagem prática na escola. Ali, os estudantes experimentam, testam ideias e desenvolvem projetos que conectam o conteúdo às demandas do mundo real.
                         </p>
-                        <p style="text-align: justify; margin-bottom: 10px;">
+                        <p style="text-align: justify; margin-bottom: 15px;">
                             O PROATI fortalece esse trabalho ao integrar a tecnologia ao cotidiano escolar, oferecendo suporte aos professores e orientando o uso dos recursos digitais. Atua como ponte entre a prática pedagógica e as ferramentas tecnológicas, garantindo que a Sala Maker funcione de forma dinâmica, inclusiva e realmente transformadora.
                         </p>
                         <p style="font-weight: bold; color: var(--cor-destaque); margin-top: 10px; text-align: right;">
@@ -246,16 +260,16 @@
                     </div>
 
                     <div class="coluna-quadros">
-                        <div class="quadro-pequeno" onclick="abrirImagem('https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg')">
-                            <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg" class="img-quadro">
+                        <div class="quadro-pequeno" onclick="abrirImagem('https://raw.githubusercontent.com/Fr34k1981/Portfolio/b79cb2a10266765edf791e299108950e654d6fe2/img4.jpg')">
+                            <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/b79cb2a10266765edf791e299108950e654d6fe2/img4.jpg" class="img-quadro">
                             <p class="legenda-quadro">Ver foto</p>
                         </div>
-                        <div class="quadro-pequeno" onclick="abrirImagem('https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg')">
-                            <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg" class="img-quadro">
+                        <div class="quadro-pequeno" onclick="abrirImagem('https://raw.githubusercontent.com/Fr34k1981/Portfolio/b79cb2a10266765edf791e299108950e654d6fe2/img5.jpg')">
+                            <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/b79cb2a10266765edf791e299108950e654d6fe2/img5.jpg" class="img-quadro">
                             <p class="legenda-quadro">Ver foto</p>
                         </div>
-                        <div class="quadro-pequeno" onclick="abrirImagem('https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg')">
-                            <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg" class="img-quadro">
+                        <div class="quadro-pequeno" onclick="abrirImagem('https://raw.githubusercontent.com/Fr34k1981/Portfolio/b79cb2a10266765edf791e299108950e654d6fe2/img6.jpg')">
+                            <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/b79cb2a10266765edf791e299108950e654d6fe2/img6.jpg" class="img-quadro">
                             <p class="legenda-quadro">Ver foto</p>
                         </div>
                     </div>
@@ -265,10 +279,13 @@
             </div>
 
             <div id="pag4" class="pagina-conteudo">
-                <h2>03 // Arquivos</h2>
+                <h2>03 // A Escola</h2>
                 <div style="background: #f9f9f9; padding: 15px; border-left: 4px solid var(--cor-destaque); margin-bottom: 10px;">
-                    <h3 style="margin:0; font-size: 1.1rem; color:#333;">Minhas Crônicas</h3>
-                    <p style="margin:5px 0 0 0; font-size: 0.9rem;">Pensamentos e narrativas.</p>
+                    <h3 style="margin:0; font-size: 1.1rem; font-family:var(--fonte-corpo); font-weight:bold; color:#333;">E.E. Paulo Américo Paganucci</h3>
+                    <p style="margin:5px 0 0 0; font-size: 0.9rem;">
+                        Espaço dedicado à apresentação da unidade escolar, seus projetos institucionais e a comunidade que atendemos.
+                        (Você pode adicionar mais texto sobre a escola aqui no futuro).
+                    </p>
                 </div>
                 <button class="btn-voltar" onclick="mudarPagina('pag1')">Voltar</button>
             </div>
