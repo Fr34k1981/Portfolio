@@ -13,9 +13,9 @@
         :root {
             --bg-fundo: #1a1a1d; 
             --bg-conteudo: #ffffff; 
-            --cor-destaque: #6f00ff; 
-            --cor-secundaria: #ff0055; 
-            --cor-subtitulo: #FFD700; 
+            --cor-destaque: #6f00ff; /* Roxo */
+            --cor-secundaria: #ff0055; /* Rosa */
+            --cor-subtitulo: #FFD700; /* Dourado */
             --cor-texto: #212121;
             
             --fonte-titulo: 'Bangers', system-ui; 
@@ -38,7 +38,41 @@
             overflow: hidden;
         }
 
-        /* CONTAINER LARGO */
+        /* LIGHTBOX (TELA CHEIA DA IMAGEM) */
+        .lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9); /* Fundo escuro */
+            backdrop-filter: blur(5px); /* Desfoque no fundo */
+            z-index: 9999;
+            display: none; /* Escondido por padrão */
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
+        .lightbox-img {
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid var(--cor-destaque);
+            border-radius: 8px;
+            box-shadow: 0 0 30px var(--cor-destaque);
+            object-fit: contain;
+            transform: scale(0.9);
+            animation: zoomIn 0.3s forwards;
+        }
+
+        @keyframes zoomIn { to { transform: scale(1); } }
+
+        /* CONTAINER PRINCIPAL */
         .livro-container {
             position: relative;
             width: 95%;
@@ -62,7 +96,6 @@
             scrollbar-width: thin;
             scrollbar-color: var(--cor-destaque) #f0f0f0;
         }
-
         .area-conteudo-paginas::-webkit-scrollbar { width: 8px; }
         .area-conteudo-paginas::-webkit-scrollbar-track { background: #f1f1f1; }
         .area-conteudo-paginas::-webkit-scrollbar-thumb { background-color: var(--cor-destaque); border-radius: 4px; }
@@ -80,28 +113,16 @@
             transition: opacity 0.3s ease;
         }
 
-        .pagina-conteudo.ativa {
-            display: block;
-            opacity: 1;
-            animation: fadeIn 0.5s forwards;
-        }
+        .pagina-conteudo.ativa { display: block; opacity: 1; animation: fadeIn 0.5s forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- ESTILOS DA HOME (PAG 1) --- */
+        /* --- HOME --- */
         #pag1.ativa {
-            display: flex;
-            flex-direction: column;
-            align-items: center;     
-            justify-content: center;
-            gap: 15px;
-            padding-top: 20px;
-            padding-bottom: 20px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 15px; padding-top: 20px; padding-bottom: 20px;
         }
 
+        /* TÍTULOS COM EFEITO AO PASSAR O MOUSE */
         h1 {
             font-family: var(--fonte-titulo);
             color: var(--cor-destaque);
@@ -112,164 +133,127 @@
             text-shadow: 2px 2px 0px #000;
             line-height: 1;
             cursor: default;
+            transition: all 0.3s ease; /* Suavidade */
         }
         
+        /* Efeito de balanço no título principal */
+        h1:hover { transform: scale(1.05); }
+
         .nome-destaque {
             color: var(--cor-secundaria);
             display: block; 
             font-size: 3rem; 
             transition: color 0.3s, text-shadow 0.3s; 
         }
-
         h1:hover .nome-destaque {
             color: #fff;
-            text-shadow: 0 0 10px var(--cor-secundaria), 2px 2px 0 #000;
+            text-shadow: 0 0 15px var(--cor-secundaria), 2px 2px 0 #000;
         }
 
         .subtitulo-escola {
-            font-family: var(--fonte-corpo);
-            color: var(--cor-subtitulo);
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            text-align: center;
-            margin-top: 5px;
+            font-family: var(--fonte-corpo); color: var(--cor-subtitulo);
+            font-weight: bold; text-transform: uppercase; font-size: 0.9rem;
+            text-align: center; margin-top: 5px; transition: 0.3s;
         }
+        .subtitulo-escola:hover { letter-spacing: 1px; color: #d4b000; }
 
-        /* Banner Home */
+        /* FOTO HOME */
         .banner-container {
-            width: 100%;
-            height: auto;
-            max-height: 250px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 10px 0;
-            padding: 5px;
-            border: 2px dashed #ccc;
-            border-radius: 8px;
-            overflow: hidden; 
+            width: 100%; height: auto; max-height: 250px;
+            display: flex; justify-content: center; align-items: center;
+            margin: 10px 0; padding: 5px;
+            border: 2px dashed #ccc; border-radius: 8px; overflow: hidden; 
             cursor: pointer;
         }
-
         .banner-img {
-            height: 100%;
-            width: auto;
-            max-width: 100%;
-            object-fit: contain;
-            border-radius: 4px;
-            transition: transform 0.4s;
+            height: 100%; width: auto; max-width: 100%;
+            object-fit: contain; border-radius: 4px; transition: transform 0.4s;
         }
-
         .banner-container:hover .banner-img { transform: scale(1.15); }
 
-        /* Menu */
+        /* MENU */
         .menu-lista {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            max-width: 280px; 
-            gap: 12px;
-            padding: 0;
-            list-style: none;
-            margin: 10px 0;
+            display: flex; flex-direction: column; width: 100%; max-width: 280px; 
+            gap: 12px; padding: 0; list-style: none; margin: 10px 0;
         }
-
         .menu-lista button {
-            background: #fff;
-            border: 2px solid #333;
-            color: #333;
-            padding: 12px;
-            font-family: var(--fonte-titulo);
-            font-size: 1.2rem;
-            cursor: pointer;
-            border-radius: 6px;
-            transition: 0.2s;
-            text-align: center;
-            letter-spacing: 1px;
-            box-shadow: 4px 4px 0 #ddd;
-            width: 100%;
+            background: #fff; border: 2px solid #333; color: #333; padding: 12px;
+            font-family: var(--fonte-titulo); font-size: 1.2rem; cursor: pointer;
+            border-radius: 6px; transition: 0.2s; text-align: center; letter-spacing: 1px;
+            box-shadow: 4px 4px 0 #ddd; width: 100%;
         }
-
         .menu-lista button:hover {
-            background: var(--cor-destaque);
-            color: #fff;
-            border-color: var(--cor-destaque);
-            transform: translateY(-2px);
-            box-shadow: 4px 4px 0 #000;
+            background: var(--cor-destaque); color: #fff; border-color: var(--cor-destaque);
+            transform: translate(-3px, -3px); box-shadow: 6px 6px 0 #000;
         }
 
-        /* --- ESTILOS PAG 2 (PERFIL) --- */
+        /* --- ESTILOS INTERNOS --- */
+        
+        /* TÍTULOS INTERNOS COM AÇÃO */
         h2 { 
             font-family: var(--fonte-titulo); 
             color: #333; 
             border-left: 5px solid var(--cor-secundaria); 
             padding-left: 10px;
             margin-top: 0;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: default;
+            display: inline-block; /* Para o efeito funcionar melhor */
+            width: 100%;
         }
-        
+
+        /* Ação ao passar o mouse no título H2 */
+        h2:hover {
+            color: var(--cor-destaque); /* Muda para roxo */
+            border-left-width: 15px; /* Engrossa a borda rosa */
+            padding-left: 20px; /* Move para a direita */
+            text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
+        }
+
         .texto-bio { color: #333; line-height: 1.6; font-size: 1rem; text-align: justify; margin-bottom: 15px; }
 
         .foto-perfil-container {
-            width: 180px;      
-            height: auto;
-            float: right;      
-            margin-left: 20px; 
-            margin-bottom: 10px;
-            border: 3px solid var(--cor-destaque);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+            width: 180px; height: auto; float: right; margin-left: 20px; margin-bottom: 10px;
+            border: 3px solid var(--cor-destaque); border-radius: 8px; overflow: hidden;
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.1); transition: transform 0.3s;
         }
+        .foto-perfil-container:hover { transform: rotate(2deg) scale(1.05); } /* Brincadeira na foto perfil */
         
         .foto-perfil-img { width: 100%; height: auto; display: block; }
         .conteudo-com-foto::after { content: ""; display: table; clear: both; }
 
-        /* --- ESTILOS PAG 3 (PROJETOS) --- */
+        /* --- GALERIA DE PROJETOS (PAG 3) --- */
         .layout-projetos {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr 1fr; /* 3 Colunas */
-            gap: 15px;
-            align-items: start;
-            margin-top: 20px;
+            display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 15px;
+            align-items: start; margin-top: 20px;
         }
+        .coluna-quadros { display: flex; flex-direction: column; gap: 15px; }
 
-        .coluna-quadros {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
+        /* Quadros que clicam */
         .quadro-pequeno {
-            border: 2px dashed #ccc;
-            border-radius: 6px;
-            padding: 5px;
-            background: #fff;
-            text-align: center;
-            transition: transform 0.2s;
+            border: 2px dashed #ccc; border-radius: 6px; padding: 5px;
+            background: #fff; text-align: center; transition: all 0.2s;
+            cursor: zoom-in; /* Ícone de lupa */
         }
-        .quadro-pequeno:hover { transform: scale(1.05); border-color: var(--cor-destaque); }
+        /* Efeito no quadro ao passar o mouse */
+        .quadro-pequeno:hover { 
+            transform: scale(1.05) translateY(-5px); 
+            border-color: var(--cor-destaque);
+            box-shadow: 0 5px 15px rgba(111, 0, 255, 0.2);
+        }
 
         .img-quadro { width: 100%; height: 80px; object-fit: cover; border-radius: 4px; display: block; }
-        
-        .legenda-quadro {
-            margin: 5px 0 0 0;
-            font-size: 0.8rem;
-            color: var(--cor-destaque);
-            font-weight: bold;
-            text-transform: uppercase;
+        .legenda-quadro { margin: 5px 0 0 0; font-size: 0.8rem; color: var(--cor-destaque); font-weight: bold; text-transform: uppercase; }
+
+        .coluna-texto-projetos { padding: 0 10px; text-align: center; font-size: 0.95rem; color: #555; }
+
+        .btn-voltar { 
+            margin-top: 20px; background: #333; color: #fff; border: none; 
+            padding: 10px 20px; border-radius: 4px; font-weight: bold; cursor: pointer; 
+            display: block; clear: both; transition: 0.2s;
         }
+        .btn-voltar:hover { background: var(--cor-destaque); transform: scale(1.05); }
 
-        .coluna-texto-projetos {
-            padding: 0 10px;
-            text-align: center;
-            font-size: 0.95rem;
-            color: #555;
-        }
-
-        .btn-voltar { margin-top: 20px; background: #333; color: #fff; border: none; padding: 10px 20px; border-radius: 4px; font-weight: bold; cursor: pointer; display: block; clear: both; }
-
-        /* Responsividade para os Quadros */
         @media (max-width: 700px) {
             .layout-projetos { grid-template-columns: 1fr 1fr; } 
             .coluna-texto-projetos { grid-column: span 2; order: -1; margin-bottom: 15px; }
@@ -277,6 +261,10 @@
     </style>
 </head>
 <body>
+
+    <div id="lightbox" class="lightbox-overlay" onclick="fecharImagem()">
+        <img id="lightbox-img" src="" class="lightbox-img">
+    </div>
 
     <div class="livro-container">
         <div class="area-conteudo-paginas">
@@ -292,8 +280,7 @@
 
                 <div class="banner-container">
                     <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg" 
-                         alt="Aleandro F." 
-                         class="banner-img">
+                         alt="Aleandro F." class="banner-img">
                 </div>
 
                 <ul class="menu-lista">
@@ -309,8 +296,8 @@
                 <div class="conteudo-com-foto">
                     <div class="foto-perfil-container">
                         <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/82fc5ad632e8aeb376db0fdd2120bb10c54ddeff/IMG-20251013-WA0004.jpg" 
-                             alt="Foto de Perfil" 
-                             class="foto-perfil-img">
+                             alt="Foto de Perfil" class="foto-perfil-img"
+                             onclick="abrirImagem(this.src)" style="cursor: zoom-in;">
                     </div>
                     <p class="texto-bio">
                         Sou professor da Secretaria da Educação do Estado de São Paulo desde 2013, construindo ao longo desses anos uma trajetória pautada pelo compromisso com a formação humana, pelo diálogo e pela prática pedagógica responsável. Minha atuação abrange as áreas de História, Filosofia e Sociologia, sempre com foco na construção crítica do conhecimento e no fortalecimento da autonomia intelectual dos estudantes.
@@ -329,38 +316,37 @@
                 <div class="layout-projetos">
                     
                     <div class="coluna-quadros">
-                        <div class="quadro-pequeno">
+                        <div class="quadro-pequeno" onclick="abrirImagem('https://raw.githubusercontent.com/Fr34k1981/Portfolio/2896fac196db608e769ec766e6e2a9836a11dc99/img1.jpg')">
                             <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/2896fac196db608e769ec766e6e2a9836a11dc99/img1.jpg" class="img-quadro">
-                            <p class="legenda-quadro">vamos tentar?</p>
+                            <p class="legenda-quadro">Ver foto</p>
                         </div>
-                        <div class="quadro-pequeno">
+                        <div class="quadro-pequeno" onclick="abrirImagem('https://raw.githubusercontent.com/Fr34k1981/Portfolio/b79cb2a10266765edf791e299108950e654d6fe2/img2.jpg')">
                             <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/b79cb2a10266765edf791e299108950e654d6fe2/img2.jpg" class="img-quadro">
-                            <p class="legenda-quadro">vamos tentar?</p>
+                            <p class="legenda-quadro">Ver foto</p>
                         </div>
-                        <div class="quadro-pequeno">
+                        <div class="quadro-pequeno" onclick="abrirImagem('https://raw.githubusercontent.com/Fr34k1981/Portfolio/b79cb2a10266765edf791e299108950e654d6fe2/img3.jpg')">
                             <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/b79cb2a10266765edf791e299108950e654d6fe2/img3.jpg" class="img-quadro">
-                            <p class="legenda-quadro">vamos tentar?</p>
+                            <p class="legenda-quadro">Ver foto</p>
                         </div>
                     </div>
 
                     <div class="coluna-texto-projetos">
-                        <p><strong>Descrição:</strong></p>
-                        <p>Este espaço central está reservado para descrever os projetos ao lado.</p>
-                        <p>Clique nas imagens para expandir ou adicione detalhes aqui.</p>
+                        <p><strong>Clique nas imagens para ampliar!</strong></p>
+                        <p>Ao lado estão registros fotográficos de atividades e projetos desenvolvidos com os alunos.</p>
                     </div>
 
                     <div class="coluna-quadros">
-                        <div class="quadro-pequeno">
+                        <div class="quadro-pequeno" onclick="abrirImagem('https://raw.githubusercontent.com/Fr34k1981/Portfolio/b79cb2a10266765edf791e299108950e654d6fe2/img4.jpg')">
                             <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/b79cb2a10266765edf791e299108950e654d6fe2/img4.jpg" class="img-quadro">
-                            <p class="legenda-quadro">vamos tentar?</p>
+                            <p class="legenda-quadro">Ver foto</p>
                         </div>
-                        <div class="quadro-pequeno">
+                        <div class="quadro-pequeno" onclick="abrirImagem('https://raw.githubusercontent.com/Fr34k1981/Portfolio/b79cb2a10266765edf791e299108950e654d6fe2/img5.jpg')">
                             <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/b79cb2a10266765edf791e299108950e654d6fe2/img5.jpg" class="img-quadro">
-                            <p class="legenda-quadro">vamos tentar?</p>
+                            <p class="legenda-quadro">Ver foto</p>
                         </div>
-                        <div class="quadro-pequeno">
+                        <div class="quadro-pequeno" onclick="abrirImagem('https://raw.githubusercontent.com/Fr34k1981/Portfolio/b79cb2a10266765edf791e299108950e654d6fe2/img6.jpg')">
                             <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/b79cb2a10266765edf791e299108950e654d6fe2/img6.jpg" class="img-quadro">
-                            <p class="legenda-quadro">vamos tentar?</p>
+                            <p class="legenda-quadro">Ver foto</p>
                         </div>
                     </div>
 
@@ -389,10 +375,25 @@
     </div>
 
     <script>
+        // Navegação entre páginas
         function mudarPagina(id) {
             document.querySelectorAll('.pagina-conteudo').forEach(p => p.classList.remove('ativa'));
             document.getElementById(id).classList.add('ativa');
             document.querySelector('.area-conteudo-paginas').scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Função para abrir a imagem em tela cheia (Lightbox)
+        function abrirImagem(linkImagem) {
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            
+            img.src = linkImagem; // Coloca a foto clicada no lightbox
+            lightbox.classList.add('active'); // Mostra o lightbox
+        }
+
+        // Função para fechar ao clicar
+        function fecharImagem() {
+            document.getElementById('lightbox').classList.remove('active');
         }
     </script>
 </body>
