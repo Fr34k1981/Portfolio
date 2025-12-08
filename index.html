@@ -15,7 +15,7 @@
             --bg-conteudo: #ffffff; 
             --cor-destaque: #6f00ff; /* Roxo Neon */
             --cor-secundaria: #ff0055; /* Rosa Neon */
-            --cor-terciaria: #00f3ff; /* Ciano Neon (Novo Subtítulo) */
+            --cor-subtitulo: #FFD700; /* AMARELO OURO (NOVO) */
             --cor-texto: #212121;
             
             --fonte-titulo: 'Bangers', system-ui; 
@@ -43,7 +43,7 @@
             position: relative;
             width: 95%;
             max-width: 500px;
-            height: 90vh; /* Aumentei um pouco a altura geral */
+            height: 90vh;
             max-height: 850px;
             background-color: var(--bg-conteudo);
             border-radius: 15px;
@@ -92,9 +92,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;     
-            justify-content: space-between; /* Distribui melhor o espaço */
+            justify-content: space-between; 
             gap: 10px;
-            height: 100%; /* Força ocupar altura total para o flex funcionar */
+            height: 100%; 
         }
 
         @keyframes fadeIn {
@@ -120,23 +120,19 @@
             color: var(--cor-secundaria);
             display: block; 
             font-size: 3rem; 
-            transition: color 0.3s, text-shadow 0.3s; /* Animação suave */
+            transition: color 0.3s, text-shadow 0.3s; 
         }
 
-        /* CORREÇÃO DO HOVER: Agora afeta o Aleandro F. */
-        h1:hover {
-            color: var(--cor-secundaria); /* Muda o 'Portfólio' para Rosa */
-        }
-        
+        h1:hover { color: var(--cor-secundaria); }
         h1:hover .nome-destaque {
-            color: #fff; /* Muda o 'Aleandro' para Branco */
-            text-shadow: 0 0 10px var(--cor-secundaria), 2px 2px 0 #000; /* Brilho rosa */
+            color: #fff;
+            text-shadow: 0 0 10px var(--cor-secundaria), 2px 2px 0 #000;
         }
 
-        /* NOVO SUBTÍTULO ESCOLAR */
+        /* SUBTÍTULO ESCOLAR (COR CORRIGIDA PARA OURO) */
         .subtitulo-escola {
             font-family: var(--fonte-corpo);
-            color: var(--cor-terciaria); /* CIANO NEON */
+            color: var(--cor-subtitulo); /* AMARELO OURO */
             font-weight: 900;
             text-transform: uppercase;
             font-size: 0.85rem;
@@ -144,23 +140,21 @@
             letter-spacing: 0.5px;
             margin-top: 5px;
             background: #111;
-            padding: 5px 10px;
+            padding: 8px 12px;
             border-radius: 4px;
             box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+            border: 1px solid #444;
         }
 
         /* --- FOTO MAIOR E AJUSTÁVEL --- */
         .banner-container {
             width: 100%;
-            /* Flex-grow faz a foto ocupar o espaço que sobrar na tela */
             flex-grow: 1; 
-            max-height: 50vh; /* Limite para não empurrar o menu para fora */
-            min-height: 200px; /* Tamanho mínimo */
-            
+            max-height: 50vh; 
+            min-height: 200px;
             display: flex;
             justify-content: center;
             align-items: center;
-            
             margin: 10px 0;
             padding: 5px;
             border: 2px dashed #ccc;
@@ -170,15 +164,15 @@
         }
 
         .banner-img {
-            height: 100%; /* Ocupa a altura disponível do container */
+            height: 100%;
             width: 100%;
-            object-fit: contain; /* Garante que a foto apareça inteira */
+            object-fit: contain;
             border-radius: 4px;
             transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .banner-container:hover .banner-img {
-            transform: scale(1.1); /* Zoom */
+            transform: scale(1.1); 
         }
 
         /* --- MENU --- */
@@ -190,7 +184,7 @@
             gap: 10px;
             padding: 0;
             list-style: none;
-            margin-bottom: 10px; /* Espaço no final */
+            margin-bottom: 10px;
         }
 
         .menu-lista button {
@@ -216,9 +210,18 @@
             box-shadow: 4px 4px 0 #000;
         }
 
-        /* Resto dos estilos (Títulos internos, botões, carrossel) */
+        /* --- TEXTOS INTERNOS --- */
         h2 { font-family: var(--fonte-titulo); color: var(--cor-destaque); border-left: 5px solid var(--cor-secundaria); padding-left: 10px; }
-        p { color: #555; line-height: 1.5; font-size: 1rem; }
+        
+        /* Ajuste para o texto longo do professor */
+        .texto-bio {
+            color: #333; 
+            line-height: 1.8; 
+            font-size: 1.05rem; 
+            text-align: justify;
+            margin-bottom: 15px;
+        }
+
         .btn-voltar { margin-top: 20px; background: #333; color: #fff; border: none; padding: 10px 20px; border-radius: 4px; font-weight: bold; cursor: pointer; }
         .carousel-wrapper { margin-top: 20px; border: 2px solid #333; border-radius: 8px; overflow: hidden; position: relative; }
         .carousel-slides { display: flex; transition: transform 0.4s ease; }
@@ -257,9 +260,16 @@
             </div>
 
             <div id="pag2" class="pagina-conteudo">
-                <h2>01 // Sobre Aleandro</h2>
-                <p>Olá! Este é o meu espaço criativo.</p>
-                <p>Aqui você vai encontrar uma mistura de técnica, arte visual e experimentações.</p>
+                <h2>01 // Quem Sou Eu</h2>
+                
+                <p class="texto-bio">
+                    Sou professor da Secretaria da Educação do Estado de São Paulo desde 2013, construindo ao longo desses anos uma trajetória pautada pelo compromisso com a formação humana, pelo diálogo e pela prática pedagógica responsável. Minha atuação abrange as áreas de História, Filosofia e Sociologia, sempre com foco na construção crítica do conhecimento e no fortalecimento da autonomia intelectual dos estudantes.
+                </p>
+                
+                <p class="texto-bio">
+                    Em 2024, consolidei uma etapa importante da minha carreira ao assumir o cargo na escola Paulo Américo Paganucci, conquistado por concurso público, reafirmando meu compromisso com a educação pública e com o desenvolvimento contínuo da minha prática docente. Esse período representa não apenas a continuidade do meu trabalho, mas também a maturidade profissional adquirida ao longo de mais de uma década de dedicação à rede estadual.
+                </p>
+
                 <button class="btn-voltar" onclick="mudarPagina('pag1')">Voltar</button>
             </div>
 
