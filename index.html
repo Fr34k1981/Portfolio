@@ -229,7 +229,35 @@
         .img-quadro { width: 100%; height: 80px; object-fit: cover; border-radius: 4px; display: block; }
         .legenda-quadro { margin: 5px 0 0 0; font-size: 0.8rem; color: var(--cor-destaque); font-weight: bold; text-transform: uppercase; }
 
-        .coluna-texto-projetos { padding: 0 10px; font-size: 0.95rem; color: #555; }
+        .coluna-texto-projetos { padding: 0 10px; text-align: center; font-size: 0.95rem; color: #555; }
+
+        /* --- ESTILOS PÁGINA 4 (ESCOLA) --- */
+        .container-escola {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .box-imagem-aleatoria {
+            width: 100%;
+            max-width: 600px;
+            height: 300px; /* Altura fixa para não pular */
+            border: 3px solid var(--cor-destaque);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            background: #000;
+            box-shadow: 5px 5px 0 rgba(0,0,0,0.2);
+        }
+
+        .img-rotativa {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out; /* Fade suave */
+        }
 
         .btn-voltar { 
             margin-top: 20px; background: #333; color: #fff; border: none; 
@@ -241,6 +269,7 @@
         @media (max-width: 700px) {
             .layout-projetos { grid-template-columns: 1fr 1fr; } 
             .coluna-texto-projetos { grid-column: span 2; order: -1; margin-bottom: 15px; }
+            .box-imagem-aleatoria { height: 200px; }
         }
     </style>
 </head>
@@ -270,7 +299,7 @@
                 <ul class="menu-lista">
                     <li><button onclick="mudarPagina('pag2')">01. QUEM SOU EU</button></li>
                     <li><button onclick="mudarPagina('pag3')">02. SALA MAKER</button></li>
-                    <li><button onclick="mudarPagina('pag4')">03. TEXTOS</button></li>
+                    <li><button onclick="mudarPagina('pag4')">03. ESCOLA</button></li>
                     <li><button onclick="mudarPagina('pag5')">04. CONTATO</button></li>
                 </ul>
             </div>
@@ -347,11 +376,28 @@
             </div>
 
             <div id="pag4" class="pagina-conteudo">
-                <h2>03 // Arquivos</h2>
-                <div style="background: #f9f9f9; padding: 15px; border-left: 4px solid var(--cor-destaque); margin-bottom: 10px;">
-                    <h3 style="margin:0; font-size: 1.1rem; font-family:var(--fonte-corpo); font-weight:bold; color:#333;">Minhas Crônicas</h3>
-                    <p style="margin:5px 0 0 0; font-size: 0.9rem;">Pensamentos e narrativas.</p>
+                <h2>03 // Paulo Américo Paganucci</h2>
+                
+                <div class="container-escola">
+                    
+                    <div class="box-imagem-aleatoria">
+                        <img id="img-rotativa" src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/8af9b8917eaa03224abb234d092f6db79928517d/img8.jpg" class="img-rotativa" alt="Escola">
+                    </div>
+
+                    <div>
+                        <p class="texto-bio">
+                            A Escola Estadual Paulo Américo Paganucci está inserida em um território marcado por forte fragilidade social, onde a escola se torna um ponto de amparo e possibilidade para seus estudantes. Nesse contexto, o uso responsável da tecnologia é essencial para ampliar oportunidades e fortalecer a aprendizagem.
+                        </p>
+                        <p class="texto-bio">
+                            As avaliações externas, como Provão Paulista e SARESP, ajudam a identificar necessidades e orientar intervenções pedagógicas. Já as plataformas digitais da rede, como Leia, Sala do Futuro, Alura, Matific e outras, ampliam repertórios, desenvolvem autonomia e conectam o estudante a formas mais atuais de aprender.
+                        </p>
+                        <p class="texto-bio">
+                            Para que todos esses recursos funcionem de maneira articulada e eficaz, o PROATI é indispensável. Ele orienta o uso das tecnologias, apoia professores, acompanha estudantes e garante que cada ferramenta digital contribua para a formação integral dentro das realidades e desafios do Paganucci.
+                        </p>
+                    </div>
+
                 </div>
+
                 <button class="btn-voltar" onclick="mudarPagina('pag1')">Voltar</button>
             </div>
 
@@ -367,6 +413,40 @@
     </div>
 
     <script>
+        // Links das imagens da escola para rotação
+        const imagensEscola = [
+            "https://raw.githubusercontent.com/Fr34k1981/Portfolio/8af9b8917eaa03224abb234d092f6db79928517d/img8.jpg",
+            "https://raw.githubusercontent.com/Fr34k1981/Portfolio/8af9b8917eaa03224abb234d092f6db79928517d/img6.jpg",
+            "https://raw.githubusercontent.com/Fr34k1981/Portfolio/8af9b8917eaa03224abb234d092f6db79928517d/img7.jpg",
+            "https://raw.githubusercontent.com/Fr34k1981/Portfolio/8af9b8917eaa03224abb234d092f6db79928517d/img9.jpg",
+            "https://raw.githubusercontent.com/Fr34k1981/Portfolio/8af9b8917eaa03224abb234d092f6db79928517d/img10.jpg"
+        ];
+
+        // Função que troca a imagem aleatoriamente
+        function iniciarSlideEscola() {
+            const imgElement = document.getElementById('img-rotativa');
+            if(!imgElement) return;
+
+            setInterval(() => {
+                // Efeito de fade out
+                imgElement.style.opacity = 0;
+                
+                setTimeout(() => {
+                    // Troca a imagem
+                    const randomIndex = Math.floor(Math.random() * imagensEscola.length);
+                    imgElement.src = imagensEscola[randomIndex];
+                    // Efeito de fade in
+                    imgElement.style.opacity = 1;
+                }, 500); // Espera meio segundo para trocar (tempo do fade)
+                
+            }, 4000); // Troca a cada 4 segundos
+        }
+
+        // Inicia o slide assim que a página carrega
+        window.onload = function() {
+            iniciarSlideEscola();
+        };
+
         function mudarPagina(id) {
             document.querySelectorAll('.pagina-conteudo').forEach(p => p.classList.remove('ativa'));
             document.getElementById(id).classList.add('ativa');
