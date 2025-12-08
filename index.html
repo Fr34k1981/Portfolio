@@ -92,7 +92,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;     
-            justify-content: center; /* Centraliza tudo verticalmente */
+            justify-content: center;
             gap: 15px;
             padding-top: 20px;
             padding-bottom: 20px;
@@ -129,23 +129,22 @@
             text-shadow: 0 0 10px var(--cor-secundaria), 2px 2px 0 #000;
         }
 
-        /* SUBTÍTULO (TEXTO SIMPLES) */
+        /* SUBTÍTULO (TEXTO SIMPLES E DOURADO) */
         .subtitulo-escola {
             font-family: var(--fonte-corpo);
-            color: var(--cor-subtitulo); /* Dourado */
+            color: var(--cor-subtitulo);
             font-weight: bold;
             text-transform: uppercase;
             font-size: 0.9rem;
             text-align: center;
             margin-top: 5px;
-            /* Removi fundo e bordas, agora é texto simples */
         }
 
-        /* --- FOTO (AJUSTE SEGURO) --- */
+        /* --- FOTO (TRAVADA PARA NÃO QUEBRAR O LAYOUT) --- */
         .banner-container {
             width: 100%;
             height: auto;
-            max-height: 250px; /* Altura segura para não quebrar o layout */
+            max-height: 250px; /* Altura segura */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -170,15 +169,15 @@
             transform: scale(1.15); /* Zoom */
         }
 
-        /* --- MENU (BOTÕES CORRIGIDOS) --- */
+        /* --- MENU (ALINHAMENTO VERTICAL CORRIGIDO) --- */
         .menu-lista {
             display: flex;
-            flex-direction: column; 
+            flex-direction: column; /* Um embaixo do outro */
             width: 100%;
             max-width: 280px; 
-            gap: 12px; /* Espaço entre botões */
+            gap: 12px;
             padding: 0;
-            list-style: none; /* Remove bolinhas */
+            list-style: none;
             margin: 10px 0;
         }
 
@@ -195,7 +194,7 @@
             text-align: center;
             letter-spacing: 1px;
             box-shadow: 4px 4px 0 #ddd;
-            width: 100%; /* Garante largura total */
+            width: 100%;
         }
 
         .menu-lista button:hover {
