@@ -13,9 +13,9 @@
         :root {
             --bg-fundo: #1a1a1d; 
             --bg-conteudo: #ffffff; 
-            --cor-destaque: #6f00ff; /* Roxo */
-            --cor-secundaria: #ff0055; /* Rosa */
-            --cor-subtitulo: #FFD700; /* Dourado */
+            --cor-destaque: #6f00ff; 
+            --cor-secundaria: #ff0055; 
+            --cor-subtitulo: #FFD700; 
             --cor-texto: #212121;
             
             --fonte-titulo: 'Bangers', system-ui; 
@@ -41,7 +41,7 @@
         /* LIGHTBOX */
         .lightbox-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(5px); z-index: 9999;
+            background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(5px); z-index: 9999;
             display: none; justify-content: center; align-items: center; cursor: pointer;
             animation: fadeIn 0.3s ease;
         }
@@ -142,7 +142,7 @@
         .foto-perfil-img { width: 100%; height: auto; display: block; }
         .conteudo-com-foto::after { content: ""; display: table; clear: both; }
 
-        /* --- GALERIA SALA MAKER (PAG 3) --- */
+        /* --- SALA MAKER (GRADE) --- */
         .layout-projetos {
             display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 15px;
             align-items: start; margin-top: 20px;
@@ -163,23 +163,35 @@
 
         .coluna-texto-projetos { padding: 0 10px; font-size: 0.95rem; color: #555; }
 
-        /* --- PÁGINA ESCOLA (PAG 4) --- */
+        /* --- SLIDESHOW CORRIGIDO (PAG 4) --- */
         .container-escola {
             display: flex; flex-direction: column; align-items: center; gap: 20px;
         }
         
-        .box-imagem-aleatoria {
+        .box-imagem-rotativa {
             width: 100%; max-width: 600px; 
-            height: 350px; /* Altura fixa */
+            height: 350px; 
             border: 3px solid var(--cor-destaque); border-radius: 8px;
             overflow: hidden; position: relative; background: #000;
             box-shadow: 5px 5px 0 rgba(0,0,0,0.2);
+            cursor: zoom-in;
         }
 
-        .img-rotativa {
-            width: 100%; height: 100%;
-            object-fit: contain; /* FOTO INTEIRA SEM CORTAR */
-            opacity: 1; transition: opacity 0.5s ease-in-out;
+        /* Estilo para as imagens empilhadas */
+        .slide-escola {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Não corta a imagem */
+            opacity: 0; /* Invisível por padrão */
+            transition: opacity 1s ease-in-out; /* Transição suave de 1s */
+        }
+
+        /* Classe para mostrar a imagem atual */
+        .slide-escola.active {
+            opacity: 1;
         }
 
         .btn-voltar { 
@@ -192,7 +204,7 @@
         @media (max-width: 700px) {
             .layout-projetos { grid-template-columns: 1fr 1fr; } 
             .coluna-texto-projetos { grid-column: span 2; order: -1; margin-bottom: 15px; }
-            .box-imagem-aleatoria { height: 250px; }
+            .box-imagem-rotativa { height: 250px; }
         }
     </style>
 </head>
@@ -272,8 +284,12 @@
             <div id="pag4" class="pagina-conteudo">
                 <h2>03 // Paulo Américo Paganucci</h2>
                 <div class="container-escola">
-                    <div class="box-imagem-aleatoria">
-                        <img id="img-rotativa" src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/8af9b8917eaa03224abb234d092f6db79928517d/img8.jpg" class="img-rotativa" alt="Escola">
+                    <div class="box-imagem-rotativa" onclick="clicarSlideAtual()">
+                        <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/8af9b8917eaa03224abb234d092f6db79928517d/img8.jpg" class="slide-escola active">
+                        <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/8af9b8917eaa03224abb234d092f6db79928517d/img6.jpg" class="slide-escola">
+                        <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/8af9b8917eaa03224abb234d092f6db79928517d/img7.jpg" class="slide-escola">
+                        <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/8af9b8917eaa03224abb234d092f6db79928517d/img9.jpg" class="slide-escola">
+                        <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/8af9b8917eaa03224abb234d092f6db79928517d/img10.jpg" class="slide-escola">
                     </div>
                     <div>
                         <p class="texto-bio">A Escola Estadual Paulo Américo Paganucci está inserida em um território marcado por forte fragilidade social, onde a escola se torna um ponto de amparo e possibilidade para seus estudantes. Nesse contexto, o uso responsável da tecnologia é essencial para ampliar oportunidades e fortalecer a aprendizagem.</p>
@@ -296,51 +312,54 @@
     </div>
 
     <script>
-        // --- LINKS DAS IMAGENS DA ESCOLA (PÁGINA 4) ---
-        const imagensEscola = [
-            "https://raw.githubusercontent.com/Fr34k1981/Portfolio/8af9b8917eaa03224abb234d092f6db79928517d/img8.jpg",
-            "https://raw.githubusercontent.com/Fr34k1981/Portfolio/8af9b8917eaa03224abb234d092f6db79928517d/img6.jpg",
-            "https://raw.githubusercontent.com/Fr34k1981/Portfolio/8af9b8917eaa03224abb234d092f6db79928517d/img7.jpg",
-            "https://raw.githubusercontent.com/Fr34k1981/Portfolio/8af9b8917eaa03224abb234d092f6db79928517d/img9.jpg",
-            "https://raw.githubusercontent.com/Fr34k1981/Portfolio/8af9b8917eaa03224abb234d092f6db79928517d/img10.jpg"
-        ];
+        // --- LÓGICA DO SLIDE SEQUENCIAL (5 Segundos) ---
+        let indiceSlideEscola = 0;
+        
+        function passarSlideEscola() {
+            // Pega todas as imagens do slide
+            const slides = document.querySelectorAll('.slide-escola');
+            if (slides.length === 0) return;
 
-        // Slide da Escola (Fade In/Out)
-        function iniciarSlideEscola() {
-            const imgElement = document.getElementById('img-rotativa');
-            if(!imgElement) return;
+            // Remove a classe 'active' da imagem atual
+            slides[indiceSlideEscola].classList.remove('active');
 
-            setInterval(() => {
-                imgElement.style.opacity = 0; // Apaga
-                setTimeout(() => {
-                    const randomIndex = Math.floor(Math.random() * imagensEscola.length);
-                    imgElement.src = imagensEscola[randomIndex]; // Troca
-                    imgElement.style.opacity = 1; // Acende
-                }, 500); 
-            }, 4000); // Troca a cada 4s
+            // Vai para a próxima (sequencial)
+            indiceSlideEscola++;
+            if (indiceSlideEscola >= slides.length) {
+                indiceSlideEscola = 0; // Volta para a primeira
+            }
+
+            // Adiciona a classe 'active' na nova imagem
+            slides[indiceSlideEscola].classList.add('active');
         }
 
-        // Inicia
-        window.onload = function() {
-            iniciarSlideEscola();
-        };
+        // Inicia o intervalo de 5 segundos
+        setInterval(passarSlideEscola, 5000);
 
-        // Navegação
+        // --- FUNÇÕES GERAIS ---
         function mudarPagina(id) {
             document.querySelectorAll('.pagina-conteudo').forEach(p => p.classList.remove('ativa'));
             document.getElementById(id).classList.add('ativa');
             document.querySelector('.area-conteudo-paginas').scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Lightbox
         function abrirImagem(linkImagem) {
             const lightbox = document.getElementById('lightbox');
             const img = document.getElementById('lightbox-img');
             img.src = linkImagem;
             lightbox.classList.add('active');
         }
+
         function fecharImagem() {
             document.getElementById('lightbox').classList.remove('active');
+        }
+
+        // Função para ampliar a imagem do slide atual ao clicar
+        function clicarSlideAtual() {
+            const slideAtivo = document.querySelector('.slide-escola.active');
+            if (slideAtivo) {
+                abrirImagem(slideAtivo.src);
+            }
         }
     </script>
 </body>
