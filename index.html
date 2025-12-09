@@ -35,7 +35,7 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            overflow: hidden; /* Evita scroll na página principal */
+            overflow: hidden;
         }
 
         /* LIGHTBOX */
@@ -341,15 +341,15 @@
                     <div class="video-moldura">
                         <iframe 
                             id="youtube-player"
-                            data-src="https://www.youtube-nocookie.com/embed/pFuOGBnmlrw?rel=0&enablejsapi=1"
+                            data-src="https://www.youtube.com/embed/pFuOGBnmIrw?enablejsapi=1"
                             src=""
-                            title="Vídeo Freak Show - Aleandro" 
+                            title="Vídeo Aleandro" 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                             referrerpolicy="strict-origin-when-cross-origin" 
                             allowfullscreen>
                         </iframe>
                     </div>
-                    <a href="https://youtu.be/pFuOGBnmlrw" target="_blank" rel="noopener" class="link-video-fallback">
+                    <a href="https://youtu.be/pFuOGBnmIrw" target="_blank" rel="noopener" class="link-video-fallback">
                         Abrir vídeo no YouTube
                     </a>
                 </div>
@@ -361,12 +361,8 @@
     </div>
 
     <script>
-        console.log("Script carregado com sucesso!");
-
         // --- NAVEGAÇÃO ENTRE PÁGINAS ---
         function mudarPagina(idPaginaDestino) {
-            console.log("Navegando para:", idPaginaDestino);
-
             // 1. Esconder todas as páginas
             const paginas = document.querySelectorAll('.pagina-conteudo');
             paginas.forEach(p => {
@@ -377,11 +373,10 @@
             const paginaDestino = document.getElementById(idPaginaDestino);
             if (paginaDestino) {
                 paginaDestino.classList.add('ativa');
-                // Rola para o topo do conteúdo
                 document.querySelector('.area-conteudo-paginas').scrollTo({ top: 0, behavior: 'smooth' });
             }
 
-            // 3. Gerenciar o vídeo (Parar se sair da Pag 5, Restaurar se entrar na Pag 5)
+            // 3. Gerenciar o vídeo (Se for a página 5, carrega. Se sair, para.)
             if (idPaginaDestino === 'pag5') {
                 restoreVideo();
             } else {
@@ -393,16 +388,14 @@
         function stopVideo() {
             const iframe = document.getElementById('youtube-player');
             if (iframe) {
-                // Remove o link para parar o carregamento/áudio imediatamente
-                iframe.src = ""; 
+                iframe.src = ""; // Remove o vídeo da memória
             }
         }
 
         function restoreVideo() {
             const iframe = document.getElementById('youtube-player');
             if (iframe && iframe.dataset.src) {
-                // Restaura o link original para o usuário poder dar play
-                iframe.src = iframe.dataset.src;
+                iframe.src = iframe.dataset.src; // Recoloca o link para funcionar
             }
         }
 
@@ -427,26 +420,28 @@
         function clicarSlideAtual() {
             const slides = document.querySelectorAll('.slide-escola');
             if (slides.length === 0) return;
-
-            // Remove classe ativa da atual
             slides[slideIndex].classList.remove('active');
-
-            // Avança índice
             slideIndex++;
             if (slideIndex >= slides.length) {
                 slideIndex = 0;
             }
-
-            // Adiciona classe ativa na próxima
             slides[slideIndex].classList.add('active');
         }
-
-        // Rotação automática a cada 4 segundos
         setInterval(clicarSlideAtual, 4000);
 
-        // --- LISTENERS DE SEGURANÇA (Para parar áudio se fechar a aba) ---
+        // --- VERIFICAÇÃO INICIAL (PARA O VÍDEO NÃO FALHAR SE A PÁGINA JÁ COMEÇAR LÁ) ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Se a página 5 já estiver visível ao carregar, ativa o vídeo imediatamente
+            const pag5 = document.getElementById('pag5');
+            if (pag5 && pag5.classList.contains('ativa') && window.getComputedStyle(pag5).display !== 'none') {
+                restoreVideo();
+            }
+        });
+        
+        // Listener de segurança para parar áudio se trocar de aba do navegador
         document.addEventListener('visibilitychange', () => {
             if (document.hidden) stopVideo();
+            else if (document.getElementById('pag5').classList.contains('ativa')) restoreVideo();
         });
     </script>
 </body>
