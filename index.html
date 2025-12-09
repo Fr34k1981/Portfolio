@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -142,7 +143,7 @@
         .foto-perfil-img { width: 100%; height: auto; display: block; }
         .conteudo-com-foto::after { content: ""; display: table; clear: both; }
 
-        /* --- SALA MAKER (GRADE) --- */
+        /* --- GALERIA SALA MAKER (PAG 3) --- */
         .layout-projetos {
             display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 15px;
             align-items: start; margin-top: 20px;
@@ -185,10 +186,34 @@
             height: 100%;
             object-fit: contain;
             opacity: 0;
-            transition: opacity 1s ease-in-out; /* Fade suave */
+            transition: opacity 1s ease-in-out; 
         }
 
         .slide-escola.active { opacity: 1; }
+
+        /* --- ESTILO VÍDEO PAG 5 --- */
+        .video-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            text-align: center;
+        }
+        .video-moldura {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border: 2px solid #333;
+            border-radius: 8px;
+            background: #000;
+        }
+        .video-moldura iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
 
         .btn-voltar { 
             margin-top: 20px; background: #333; color: #fff; border: none; 
@@ -224,7 +249,7 @@
                 <ul class="menu-lista">
                     <li><button onclick="mudarPagina('pag2')">01. QUEM SOU EU</button></li>
                     <li><button onclick="mudarPagina('pag3')">02. SALA MAKER</button></li>
-                    <li><button onclick="mudarPagina('pag4')">03. ESCOLA</button></li>
+                    <li><button onclick="mudarPagina('pag4')">03. A ESCOLA</button></li>
                     <li><button onclick="mudarPagina('pag5')">04. CONTATO</button></li>
                 </ul>
             </div>
@@ -298,9 +323,25 @@
 
             <div id="pag5" class="pagina-conteudo">
                 <h2>04 // Fale Comigo</h2>
+                
                 <div style="background: #111; color: #fff; padding: 20px; border-radius: 8px; text-align: center;">
-                    <p>📧 aleandro@exemplo.com</p>
+                    <p style="margin: 5px 0;">📧 aleandrosantos@prof.educacao.sp.gov.br</p>
+                    <p style="margin: 5px 0;">📱 (11) 96527-6912</p>
                 </div>
+
+                <div class="video-container">
+                    <h3 style="font-family: var(--fonte-titulo); color: var(--cor-destaque); text-transform: uppercase; font-size: 1.5rem; margin-bottom: 10px;">Freak Show</h3>
+                    <div class="video-moldura">
+                        <iframe 
+                            src="https://www.youtube.com/embed/pFuOGBnmIrw" 
+                            title="Freak Show" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+
                 <button class="btn-voltar" onclick="mudarPagina('pag1')">Voltar</button>
             </div>
 
@@ -308,30 +349,19 @@
     </div>
 
     <script>
-        // --- LÓGICA DO SLIDE SEQUENCIAL (5 Segundos) ---
+        // SLIDE AUTOMÁTICO (ESCOLA)
         let indiceSlideEscola = 0;
-        
         function passarSlideEscola() {
             const slides = document.querySelectorAll('.slide-escola');
             if (slides.length === 0) return;
-
-            // Remove a classe 'active' da imagem atual
             slides[indiceSlideEscola].classList.remove('active');
-
-            // Vai para a próxima
             indiceSlideEscola++;
-            if (indiceSlideEscola >= slides.length) {
-                indiceSlideEscola = 0; // Loop
-            }
-
-            // Ativa a próxima
+            if (indiceSlideEscola >= slides.length) indiceSlideEscola = 0;
             slides[indiceSlideEscola].classList.add('active');
         }
-
-        // Inicia o intervalo de 5 segundos
         setInterval(passarSlideEscola, 5000);
 
-        // --- FUNÇÕES GERAIS ---
+        // FUNÇÕES GERAIS
         function mudarPagina(id) {
             document.querySelectorAll('.pagina-conteudo').forEach(p => p.classList.remove('ativa'));
             document.getElementById(id).classList.add('ativa');
@@ -349,12 +379,9 @@
             document.getElementById('lightbox').classList.remove('active');
         }
 
-        // Função para ampliar a imagem do slide atual ao clicar
         function clicarSlideAtual() {
             const slideAtivo = document.querySelector('.slide-escola.active');
-            if (slideAtivo) {
-                abrirImagem(slideAtivo.src);
-            }
+            if (slideAtivo) abrirImagem(slideAtivo.src);
         }
     </script>
 </body>
