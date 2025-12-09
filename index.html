@@ -35,7 +35,7 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            overflow: hidden;
+            overflow: hidden; /* Evita scroll na página principal */
         }
 
         /* LIGHTBOX */
@@ -72,8 +72,9 @@
         .pagina-conteudo {
             padding: 20px 30px; position: absolute; top: 0; left: 0; width: 100%; min-height: 100%;
             box-sizing: border-box; display: none; opacity: 0; transition: opacity 0.3s ease;
+            z-index: 1;
         }
-        .pagina-conteudo.ativa { display: block; opacity: 1; animation: fadeIn 0.5s forwards; }
+        .pagina-conteudo.ativa { display: block; opacity: 1; animation: fadeIn 0.5s forwards; z-index: 10; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* --- HOME --- */
@@ -203,12 +204,18 @@
         }
         .dados-escola p { margin: 4px 0; font-size: 0.95rem; }
 
+        /* MOLDURA DO VÍDEO */
         .video-container { width: 100%; max-width: 600px; margin: 20px auto; text-align: center; }
         .video-moldura {
             position: relative; padding-bottom: 56.25%; /* 16:9 */ height: 0;
             overflow: hidden; border: 2px solid var(--cor-destaque); border-radius: 8px; background: #000;
         }
-        .video-moldura iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        .video-moldura iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+        /* Link fallback acessível */
+        .link-video-fallback {
+            display: inline-block; margin-top: 10px; color: var(--cor-destaque); text-decoration: none; font-weight: bold;
+        }
 
         .btn-voltar { 
             margin-top: 20px; background: #333; color: #fff; border: none; 
@@ -242,10 +249,10 @@
                     <img src="https://raw.githubusercontent.com/Fr34k1981/Portfolio/43f7c07e68e47ef2fae5a231e3e3407fd1a649c3/Foto%201.jpg" alt="Aleandro F." class="banner-img">
                 </div>
                 <ul class="menu-lista">
-                    <li><button onclick="mudarPagina('pag2')">01. QUEM SOU EU</button></li>
-                    <li><button onclick="mudarPagina('pag3')">02. SALA MAKER</button></li>
-                    <li><button onclick="mudarPagina('pag4')">03. A ESCOLA</button></li>
-                    <li><button onclick="mudarPagina('pag5')">04. CONTATO</button></li>
+                    <li><button type="button" onclick="mudarPagina('pag2')">01. QUEM SOU EU</button></li>
+                    <li><button type="button" onclick="mudarPagina('pag3')">02. SALA MAKER</button></li>
+                    <li><button type="button" onclick="mudarPagina('pag4')">03. A ESCOLA</button></li>
+                    <li><button type="button" onclick="mudarPagina('pag5')">04. CONTATO</button></li>
                 </ul>
             </div>
 
@@ -258,7 +265,7 @@
                     <p class="texto-bio">Sou professor da Secretaria da Educação do Estado de São Paulo desde 2013, construindo ao longo desses anos uma trajetória pautada pelo compromisso com a formação humana, pelo diálogo e pela prática pedagógica responsável. Minha atuação abrange as áreas de História, Filosofia e Sociologia, sempre com foco na construção crítica do conhecimento e no fortalecimento da autonomia intelectual dos estudantes.</p>
                     <p class="texto-bio">Em 2024, consolidei uma etapa importante da minha carreira ao assumir o cargo na escola Paulo Américo Paganucci, conquistado por concurso público, reafirmando meu compromisso com a educação pública e com o desenvolvimento contínuo da minha prática docente. Esse período representa não apenas a continuidade do meu trabalho, mas também a maturidade profissional adquirida ao longo de mais de uma década de dedicação à rede estadual.</p>
                 </div>
-                <button class="btn-voltar" onclick="mudarPagina('pag1')">Voltar</button>
+                <button type="button" class="btn-voltar" onclick="mudarPagina('pag1')">Voltar</button>
             </div>
 
             <div id="pag3" class="pagina-conteudo">
@@ -294,7 +301,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="btn-voltar" onclick="mudarPagina('pag1')">Voltar</button>
+                <button type="button" class="btn-voltar" onclick="mudarPagina('pag1')">Voltar</button>
             </div>
 
             <div id="pag4" class="pagina-conteudo">
@@ -313,7 +320,7 @@
                         <p class="texto-bio">Para que todos esses recursos funcionem de maneira articulada e eficaz, o PROATI é indispensável. Ele orienta o uso das tecnologias, apoia professores, acompanha estudantes e garante que cada ferramenta digital contribua para a formação integral dentro das realidades e desafios do Paganucci.</p>
                     </div>
                 </div>
-                <button class="btn-voltar" onclick="mudarPagina('pag1')">Voltar</button>
+                <button type="button" class="btn-voltar" onclick="mudarPagina('pag1')">Voltar</button>
             </div>
 
             <div id="pag5" class="pagina-conteudo">
@@ -326,4 +333,121 @@
 
                 <div class="dados-escola">
                     <h3>PAULO AMERICO PAGANUCCI PROFESSOR</h3>
-   
+                    <p>Rua Paulo Américo Paganucci - Suzano, SP</p>
+                    <p>Um espaço de transformação e aprendizado.</p>
+                </div>
+
+                <div class="video-container">
+                    <div class="video-moldura">
+                        <iframe 
+                            id="youtube-player"
+                            data-src="https://www.youtube-nocookie.com/embed/pFuOGBnmlrw?rel=0&enablejsapi=1"
+                            src=""
+                            title="Vídeo Freak Show - Aleandro" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            referrerpolicy="strict-origin-when-cross-origin" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <a href="https://youtu.be/pFuOGBnmlrw" target="_blank" rel="noopener" class="link-video-fallback">
+                        Abrir vídeo no YouTube
+                    </a>
+                </div>
+
+                <button type="button" class="btn-voltar" onclick="mudarPagina('pag1')">Voltar</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        console.log("Script carregado com sucesso!");
+
+        // --- NAVEGAÇÃO ENTRE PÁGINAS ---
+        function mudarPagina(idPaginaDestino) {
+            console.log("Navegando para:", idPaginaDestino);
+
+            // 1. Esconder todas as páginas
+            const paginas = document.querySelectorAll('.pagina-conteudo');
+            paginas.forEach(p => {
+                p.classList.remove('ativa');
+            });
+
+            // 2. Mostrar a página desejada
+            const paginaDestino = document.getElementById(idPaginaDestino);
+            if (paginaDestino) {
+                paginaDestino.classList.add('ativa');
+                // Rola para o topo do conteúdo
+                document.querySelector('.area-conteudo-paginas').scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // 3. Gerenciar o vídeo (Parar se sair da Pag 5, Restaurar se entrar na Pag 5)
+            if (idPaginaDestino === 'pag5') {
+                restoreVideo();
+            } else {
+                stopVideo();
+            }
+        }
+
+        // --- GERENCIAMENTO DE VÍDEO (SOLUÇÃO ÁUDIO ZUMBI) ---
+        function stopVideo() {
+            const iframe = document.getElementById('youtube-player');
+            if (iframe) {
+                // Remove o link para parar o carregamento/áudio imediatamente
+                iframe.src = ""; 
+            }
+        }
+
+        function restoreVideo() {
+            const iframe = document.getElementById('youtube-player');
+            if (iframe && iframe.dataset.src) {
+                // Restaura o link original para o usuário poder dar play
+                iframe.src = iframe.dataset.src;
+            }
+        }
+
+        // --- LIGHTBOX (AMPLIAR IMAGEM) ---
+        function abrirImagem(src) {
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = src;
+            lightbox.classList.add('active');
+        }
+
+        function fecharImagem() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            setTimeout(() => {
+                document.getElementById('lightbox-img').src = "";
+            }, 300);
+        }
+
+        // --- SLIDESHOW (ROTAÇÃO DE IMAGENS) ---
+        let slideIndex = 0;
+        function clicarSlideAtual() {
+            const slides = document.querySelectorAll('.slide-escola');
+            if (slides.length === 0) return;
+
+            // Remove classe ativa da atual
+            slides[slideIndex].classList.remove('active');
+
+            // Avança índice
+            slideIndex++;
+            if (slideIndex >= slides.length) {
+                slideIndex = 0;
+            }
+
+            // Adiciona classe ativa na próxima
+            slides[slideIndex].classList.add('active');
+        }
+
+        // Rotação automática a cada 4 segundos
+        setInterval(clicarSlideAtual, 4000);
+
+        // --- LISTENERS DE SEGURANÇA (Para parar áudio se fechar a aba) ---
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) stopVideo();
+        });
+    </script>
+</body>
+</html>
