@@ -17,18 +17,25 @@
             --cor-secundaria: #ff0055; 
             --cor-subtitulo: #FFD700; 
             --cor-texto: #212121;
+            
             --fonte-titulo: 'Bangers', system-ui; 
             --fonte-corpo: 'Roboto', sans-serif; 
         }
 
         body {
             background-color: var(--bg-fundo);
-            background-image: radial-gradient(#333 1px, transparent 1px), radial-gradient(#333 1px, transparent 1px);
+            background-image: 
+                radial-gradient(#333 1px, transparent 1px),
+                radial-gradient(#333 1px, transparent 1px);
             background-position: 0 0, 25px 25px;
             background-size: 50px 50px;
             font-family: var(--fonte-corpo);
-            display: flex; justify-content: center; align-items: center;
-            min-height: 100vh; margin: 0; overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden;
         }
 
         /* LIGHTBOX */
@@ -172,7 +179,7 @@
         }
         .slide-escola.active { opacity: 1; }
 
-        /* --- VÍDEO (PAG 5) - CORREÇÃO ERRO 153 --- */
+        /* --- VÍDEO (PAG 5) --- */
         .video-container { width: 100%; max-width: 600px; margin: 20px auto; text-align: center; }
         .video-moldura {
             position: relative; padding-bottom: 56.25%; /* 16:9 */ height: 0;
@@ -302,51 +309,4 @@
                             frameborder="0" 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                             referrerpolicy="strict-origin-when-cross-origin" 
-                            allowfullscreen>
-                        </iframe>
-                    </div>
-                </div>
-
-                <button class="btn-voltar" onclick="mudarPagina('pag1')">Voltar</button>
-            </div>
-
-        </div>
-    </div>
-
-    <script>
-        // SLIDE ESCOLA
-        let indiceSlideEscola = 0;
-        function passarSlideEscola() {
-            const slides = document.querySelectorAll('.slide-escola');
-            if (slides.length === 0) return;
-            slides[indiceSlideEscola].classList.remove('active');
-            indiceSlideEscola++;
-            if (indiceSlideEscola >= slides.length) indiceSlideEscola = 0;
-            slides[indiceSlideEscola].classList.add('active');
-        }
-        setInterval(passarSlideEscola, 5000);
-
-        // NAVEGAÇÃO
-        function mudarPagina(id) {
-            document.querySelectorAll('.pagina-conteudo').forEach(p => p.classList.remove('ativa'));
-            document.getElementById(id).classList.add('ativa');
-            document.querySelector('.area-conteudo-paginas').scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // LIGHTBOX
-        function abrirImagem(linkImagem) {
-            const lightbox = document.getElementById('lightbox');
-            const img = document.getElementById('lightbox-img');
-            img.src = linkImagem;
-            lightbox.classList.add('active');
-        }
-        function fecharImagem() {
-            document.getElementById('lightbox').classList.remove('active');
-        }
-        function clicarSlideAtual() {
-            const slideAtivo = document.querySelector('.slide-escola.active');
-            if (slideAtivo) abrirImagem(slideAtivo.src);
-        }
-    </script>
-</body>
-</html>
+              
